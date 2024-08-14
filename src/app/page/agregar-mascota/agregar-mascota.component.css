@@ -1,0 +1,14 @@
+.progress-bar {
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  height: 10px; /* Ajustado para el nuevo tamaño */
+  margin-bottom: 10px; /* Ajustado para separarlo del texto "Completado" */
+}
+
+.progress {
+  height: 100%;
+  background-color: #4caf50; /* Color de la barra de progreso */
+  border-radius: 5px;
+  transition: width 0.3s;
+}

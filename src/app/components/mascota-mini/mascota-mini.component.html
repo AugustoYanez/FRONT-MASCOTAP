@@ -1,0 +1,7 @@
+<div class="max-w-xs bg-white rounded-lg shadow-md overflow-hidden cursor-pointer transform transition duration-300 hover:scale-105" (click)="openDetails()">
+    <img class="w-full h-32 object-cover" [src]="mascota.imagen" alt="Photo of {{ mascota.nombre }}">
+    <div class="p-4">
+      <h2 class="text-lg font-semibold text-gray-900 truncate">{{ mascota.nombre }}</h2>
+      <p class="text-sm text-gray-500 truncate">{{ mascota.apodo }}</p>
+    </div>
+</div>

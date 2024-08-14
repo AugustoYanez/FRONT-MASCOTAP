@@ -1,0 +1,63 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-900">  
+  <form (ngSubmit)="guardarUsuario($event)" class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-4xl">  
+    <h2 class="text-white text-2xl font-bold mb-6 text-center">REGISTRO</h2>  
+    
+    <!-- Bloque de mensaje de éxito -->
+    <div *ngIf="mensajeExito" class="mb-4 p-4 bg-green-500 text-white rounded">
+      {{ mensajeExito }}
+    </div>
+    
+    <!-- Bloque de mensaje de error -->
+    <div *ngIf="mensajeError">
+      <div *ngFor="let err of mensajeError" class="mb-4 p-4 bg-red-500 text-white rounded">{{err}}</div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div class="mb-4 col-span-1">
+        <label class="block text-gray-300 mb-2" for="nombre">Ingrese su nombre</label>
+        <input [(ngModel)]="usuario.nombre" name="nombre" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="nombre" placeholder="Nombre">
+      </div>
+
+      <div class="mb-4 col-span-1">
+        <label class="block text-gray-300 mb-2" for="apellido">Ingrese su apellido</label>
+        <input [(ngModel)]="usuario.apellido" name="apellido" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="apellido" placeholder="Apellido">
+      </div>
+
+      <div class="mb-4 col-span-1">
+        <label class="block text-gray-300 mb-2" for="email">Ingrese su email</label>
+        <input [(ngModel)]="usuario.email" name="email" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="email" id="email" placeholder="Email">
+      </div>
+
+      <div class="mb-4 col-span-1">
+        <label class="block text-gray-300 mb-2" for="contrasena">Ingrese su contraseña</label>
+        <input [(ngModel)]="usuario.contrasena" name="contrasena" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="password" id="contrasena" placeholder="Contraseña">
+      </div>
+
+      <div class="mb-4 col-span-1">
+        <label class="block text-gray-300 mb-2" for="telefono">Ingrese su teléfono</label>
+        <input [(ngModel)]="usuario.telefono" name="telefono" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="tel" id="telefono" placeholder="Teléfono">
+      </div>
+
+      <div class="mb-4 col-span-1">
+        <label class="block text-gray-300 mb-2" for="documento">Ingrese su tipo documento</label>
+        <select [(ngModel)]="usuario.documento" name="documento" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="documento">
+          <option *ngFor="let doc of getEnumValues(enumDoc)" [value]="doc">{{doc}}</option>
+        </select>
+      </div>
+
+      <div class="mb-4 col-span-1">
+        <label class="block text-gray-300 mb-2" for="numero">Número de documento</label>
+        <input [(ngModel)]="usuario.nroDocumento" name="nroDocumento" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="numero" placeholder="Número">
+      </div>
+
+      <div class="mb-4 col-span-1">
+        <label class="block text-gray-300 mb-2" for="contacto">Ingrese su tipo de Contacto</label>
+        <select [(ngModel)]="usuario.contacto" name="contacto" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="contacto">
+          <option *ngFor="let con of getEnumValues(enumCon)" [value]="con">{{con}}</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded mt-4" type="submit">Registrar</button>
+  </form>
+</div>
