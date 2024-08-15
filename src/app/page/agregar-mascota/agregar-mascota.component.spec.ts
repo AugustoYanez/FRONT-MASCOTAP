@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideHttpClient } from '@angular/common/http';
 import { AgregarMascotaComponent } from './agregar-mascota.component';
 
 describe('AgregarMascotaComponent', () => {
@@ -8,7 +8,8 @@ describe('AgregarMascotaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AgregarMascotaComponent]
+      imports: [AgregarMascotaComponent],
+      providers: [provideHttpClient(), AgregarMascotaComponent]
     })
     .compileComponents();
 
