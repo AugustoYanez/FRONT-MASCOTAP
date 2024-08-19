@@ -1,7 +1,7 @@
 export const environment = {
-    production: false,
+    production: true,
     name: 'prod',
     functionUrls: {
-      apiUrl: 'http://backend:3000'  // 'backend' es el nombre del servicio definido en docker-compose.yml
+        apiUrl: 'http://localhost:3000'  // 'backend' es el nombre del servicio definido en docker-compose.yml
     }
   };
