@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 
 export class UserService {
 
-  private URL = 'http://localhost:3000/user';
-
+  private BASEURL = 'http://localhost:3000/user';
+  private THISURL = 
   constructor(private http: HttpClient, private router: Router) { }
 
   perfil(): Observable<IUsuario> {

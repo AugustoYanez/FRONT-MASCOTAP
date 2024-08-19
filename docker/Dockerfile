@@ -1,3 +1,5 @@
+
+
 # Etapa 1: Construcción de la aplicación Angular
 FROM node:18 AS build
 
@@ -13,8 +15,11 @@ RUN npm install --legacy-peer-deps
 # Copia el resto del código de la aplicación
 COPY . .
 
-# Construye la aplicación Angular
-RUN npm run build --prod
+ARG PROFILE
+ENV PROFILE $PROFILE
+
+RUN echo "Environment: ${PROFILE}"
+RUN npm run build-${PROFILE}
 
 # Etapa 2: Servir la aplicación usando un servidor estático
 FROM nginx:alpine
