@@ -1,5 +1,4 @@
 export const environment = {
-    production: true,
-  
-  };
-  
+  production: true,
+  apiUrl: 'http://my-default-url' // URL por defecto
+};

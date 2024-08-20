@@ -4,14 +4,17 @@ import { Observable } from 'rxjs';
 import { IUsuario } from '../interfaces/Usuario';
 import { IMascota } from '../interfaces/Mascota';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment'
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
 
-  private BASEURL = environment.functionUrls.apiUrl;
+
+  
+  
+  private BASEURL = environment.apiUrl;
   private THISURL = `${this.BASEURL}/user`;
   constructor(private http: HttpClient, private router: Router) { }
 
