@@ -19,6 +19,7 @@ services:
     ports:
       - "3000:3000"
     environment:
+      - PORT=3000
       - NODE_ENV=production
-      - DATABASE=${PROD_DATABASE_URL}
-      - TOKEN_SECRET=${PROD_TOKEN_SECRET}
+      - DATABASE=mongodb+srv://mascotapcompany:z0Vv0fnVPJurI8hH@desarrollo.rrp5n.mongodb.net/?retryWrites=true&w=majority&appName=desarrollo 
+      - TOKEN_SECRET=secet
