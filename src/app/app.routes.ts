@@ -8,6 +8,8 @@ import { MascotasComponent } from './page/mascotas/mascotas.component'; // Compo
 import { AjustesCuentaComponent } from './components/ajustes-cuenta/ajustes-cuenta.component';
 import { AuthGuard } from './auth.guard';
 import { AgregarMascotaComponent } from './page/agregar-mascota/agregar-mascota.component';
+import { adminGuard } from './admin.guard';
+import { CaracteristicasComponent } from './page/caracteristicas/caracteristicas.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -30,4 +32,11 @@ export const routes: Routes = [
       { path: 'agg-mascota', component: AgregarMascotaComponent },
     ],
   },
+  {
+    path: 'admin',
+    canActivate: [adminGuard],
+    children: [
+      { path: 'caracteristicas', component: CaracteristicasComponent }
+    ]
+  }
 ];

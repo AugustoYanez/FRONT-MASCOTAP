@@ -8,6 +8,9 @@
             <a class="nav-link text-white hover:underline">Hogares de Tránsito</a>
             <a class="nav-link text-white hover:underline">Sobre Nosotros</a>
             <a class="nav-link text-white hover:underline" routerLink="/perfil">Perfil</a>
+            <ng-container *ngIf="auth.isAdmin">
+                <a class="nav-link text-white hover:underline" routerLink="/admin/caracteristicas">Panel de Administración</a>
+            </ng-container>
         </div>
         <ng-container *ngIf="!auth.loggedIn(); else loggedIn">
             <div class="space-x-2">
