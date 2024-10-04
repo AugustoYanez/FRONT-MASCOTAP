@@ -8,7 +8,7 @@ export class StorageService {
   constructor() { }
 
   loading(): boolean {
-    return window.localStorage != null;
+    return localStorage != null;
   }
 
   // Set a value in local storage

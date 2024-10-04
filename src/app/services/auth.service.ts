@@ -39,15 +39,16 @@ export class AuthService {
 
   isAdmin(): Promise<boolean> {
     return new Promise((resolve,reject)=> {
-
-      this.user.perfil().subscribe({
-      next: (res) => {
-        if (res.rol == Rol.Administrador) {
-          resolve(true);
-        }
-        reject(false);
+      if (typeof window !== 'undefined' && window.localStorage) {
+        this.user.perfil().subscribe({
+          next: (res) => {
+            if (res.rol == Rol.Administrador) {
+              resolve(true);
+            }
+            reject(false);
+          }
+        })
       }
-    })
     });
   }
 

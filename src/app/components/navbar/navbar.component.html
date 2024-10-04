@@ -8,11 +8,11 @@
             <a class="nav-link text-white hover:underline">Hogares de Tránsito</a>
             <a class="nav-link text-white hover:underline">Sobre Nosotros</a>
             <a class="nav-link text-white hover:underline" routerLink="/perfil">Perfil</a>
-            <ng-container *ngIf="auth.isAdmin">
+            <ng-container *ngIf="logueado">
                 <a class="nav-link text-white hover:underline" routerLink="/admin/caracteristicas">Panel de Administración</a>
             </ng-container>
         </div>
-        <ng-container *ngIf="!auth.loggedIn(); else loggedIn">
+        <ng-container *ngIf="!auth.loggedIn('token'); else loggedIn">
             <div class="space-x-2">
                 <a class="text-white bg-blue-700 hover:bg-blue-900 px-4 py-2 rounded-full shadow-md transform transition-transform duration-300 hover:scale-105" routerLink="/login">Iniciar Sesión</a>
                 <a class="text-white bg-green-700 hover:bg-green-900 px-4 py-2 rounded-full shadow-md transform transition-transform duration-300 hover:scale-105" routerLink="/register">Registro</a>
@@ -23,5 +23,6 @@
                 <a class="text-white bg-red-700 hover:bg-red-900 px-4 py-2 rounded-full shadow-md transform transition-transform duration-300 hover:scale-105" (click)="auth.logout()">Cerrar Sesión</a>
             </div>
         </ng-template>
+
     </div>
 </nav>

@@ -14,9 +14,15 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
 
+  logueado = false;
   auth: AuthService = inject(AuthService);
 
   constructor( private router: Router) {
 
+   }
+   ngOnInit() {
+     this.auth.isAdmin().then((isAdmin) => {
+      this.logueado = isAdmin
+     });
    }
 }
