@@ -10,9 +10,6 @@ import { environment } from '../../environments/environment'
 })
 
 export class UserService {
-
-
-  
   
   private BASEURL = environment.apiUrl;
   private THISURL = `${this.BASEURL}/user`;
@@ -37,7 +34,9 @@ export class UserService {
     return this.http.put<IMascota>(`${this.THISURL}`+ '/mascotas', mascota)
   }
 
-
+  traerMascotasPerdidas(): Observable<IMascota[]> {
+    return this.http.get<IMascota[]>(`${this.THISURL}/mascotas-perdidas`);
+  }
 
   
 }

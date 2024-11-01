@@ -14,29 +14,23 @@ import { DataSharedService } from '../../services/data-shared.service';
   standalone: true,
   imports: [CommonModule, RouterOutlet, RouterModule, MascotaMiniComponent],
   templateUrl: './mascotas.component.html',
-  styleUrl: './mascotas.component.css'
+  styleUrls: ['./mascotas.component.css']
 })
 export class MascotasComponent {
-  user: UserService = inject(UserService)
+  user: UserService = inject(UserService);
   usuario: IUsuario | null = null;
   mascotas: IMascota[] = [];
 
-  constructor(private sharedData: DataSharedService) {
-
-  }
+  constructor(private sharedData: DataSharedService) {}
 
   ngOnInit() {
+    this.sharedData.clear();  // Limpia cualquier dato previo
     this.user.traerMascotas().subscribe(data => {
       this.mascotas = data || [];
       this.mascotas.forEach(mascota => {
-        this.sharedData.changeData(mascota._id, mascota)
+        this.sharedData.changeData(mascota._id, mascota);
       });
-      this.sharedData.getAllData().subscribe(data => {
-        this.mascotas = data;
-      })
     });
   }
-
-
-
 }
+

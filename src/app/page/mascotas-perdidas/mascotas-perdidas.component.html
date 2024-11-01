@@ -1,0 +1,10 @@
+<!-- page/mascotas-perdidas/mascotas-perdidas.component.html -->
+<div class="mascotas-perdidas">
+    <h2>Mascotas Perdidas</h2>
+    <ul>
+      <li *ngFor="let mascota of mascotasPerdidas">
+        <app-mascota-mini [mascota]="mascota"></app-mascota-mini>
+      </li>
+    </ul>
+  </div>
+  
