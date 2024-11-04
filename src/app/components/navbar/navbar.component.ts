@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -13,16 +13,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-
-  logueado = false;
+  
+  @Input() admin!: boolean;
   auth: AuthService = inject(AuthService);
 
-  constructor( private router: Router) {
+  constructor( private router: Router) {}
 
-   }
-   ngOnInit() {
-     this.auth.isAdmin().then((isAdmin) => {
-      this.logueado = isAdmin
-     });
+   
+   logout(){
+    this.auth.logout();
+    this.router.navigate(['/']);
    }
 }

@@ -58,9 +58,7 @@ constructor(private router: Router) {
         this.mensajeExito = res.message;
         this.mensajeError = null;
         localStorage.setItem('token', res.token);
-        if (res.admin) {
-          localStorage.setItem('admin', res.admin);
-        }
+        this.auth.isAdmin();
         const redirectUrl = this.auth.getRedirectUrl() || '/';
         this.auth.clearRedirectUrl();
         this.router.navigate([redirectUrl]);
