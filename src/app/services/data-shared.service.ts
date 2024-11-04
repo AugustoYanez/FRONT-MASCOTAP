@@ -16,7 +16,8 @@ export class DataSharedService {
     descripcion: '',
     imagen: '',
     caracteristicas: '',
-    estado: Estado.Adoptada
+    estado: Estado.Adoptada,
+    ubicacion: ''
   };
 
   private dataSources: { [id: string]: BehaviorSubject<IMascota> } = {};

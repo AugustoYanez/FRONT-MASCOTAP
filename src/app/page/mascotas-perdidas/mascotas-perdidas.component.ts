@@ -9,12 +9,12 @@ import { IUsuario } from '../../interfaces/Usuario';
 import { inject } from '@angular/core';
 import { RouterOutlet, Routes, RouterModule } from '@angular/router';
 import { MascotaMiniComponent } from '../../components/mascota-mini/mascota-mini.component';
-
+import { MascotaPerdidaCardComponent } from '../../mascotaperdidacard/mascotaperdidacard.component';
 
 @Component({
   selector: 'app-mascotas-perdidas',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterModule, MascotaMiniComponent],
+  imports: [CommonModule, RouterOutlet, RouterModule, MascotaMiniComponent, MascotaPerdidaCardComponent],
   templateUrl: './mascotas-perdidas.component.html',
   styleUrls: ['./mascotas-perdidas.component.css']
 })
