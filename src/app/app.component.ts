@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet, Routes, RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from './services/auth.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   admin: boolean = false;
   auth: AuthService = inject(AuthService);
   private authSubscription: Subscription;
@@ -22,6 +22,10 @@ export class AppComponent {
       }
     )
   }
+  ngOnInit(){
+    this.auth.isAdmin()
+  }
+
   
 
 }

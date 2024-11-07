@@ -44,6 +44,7 @@ export class AuthService {
       if (typeof window !== 'undefined' && window.localStorage) {
         this.user.perfil().subscribe({
           next: (res) => {
+            console.log(res);
             this.isAdminSubject.next(res.rol == Rol.Administrador)
           },
           error: () => {
