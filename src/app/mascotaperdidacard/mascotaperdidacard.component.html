@@ -1,11 +1,26 @@
-<div class="mascota-card">
-    <div class="mascota-info">
-      <h3>{{mascota.nombre}}</h3>
-      <p><strong>Placa ID:</strong> {{mascota.placaID}}</p>
-      <p><strong>Descripción:</strong> {{mascota.descripcion}}</p>
-      <p><strong>Edad:</strong> {{mascota.edad}}</p>
-      <button (click)="encontreMascota()">Encontre a esta mascota</button>
-      <button (click)="contactarDuenio()">Contactar dueño</button>
+<div class="p-4 max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+  <div class="mascota-info">
+    <!-- Nombre de la mascota -->
+    <h3 class="text-2xl font-semibold text-indigo-600 mb-2">{{mascota.nombre}}</h3>
+
+    <!-- Información de la mascota -->
+    <p class="text-sm text-gray-700"><strong>Placa ID:</strong> {{mascota.placaID}}</p>
+    <p class="text-sm text-gray-700 mt-1"><strong>Descripción:</strong> {{mascota.descripcion}}</p>
+    <p class="text-sm text-gray-700 mt-1"><strong>Edad:</strong> {{mascota.edad}} años</p>
+
+    <!-- Botones de acción -->
+    <div class="mt-4 flex space-x-4">
+      <button 
+        (click)="encontreMascota()" 
+        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        Encontre a esta mascota
+      </button>
+
+      <button 
+        (click)="contactarDuenio()" 
+        class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+        Contactar dueño
+      </button>
     </div>
   </div>
-  
+</div>

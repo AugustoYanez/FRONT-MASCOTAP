@@ -1,8 +1,27 @@
 <div class="mascotas-perdidas">
   <h2>Mascotas Perdidas</h2>
+
+  <!-- Contenedor para la búsqueda y el botón -->
+  <div class="search-container">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="updatePagina()"
+      placeholder="Buscar por nombre..."
+      class="search-input"
+    />
+    <button (click)="cargarMas()">Ver más</button>
+  </div>
+
+  <!-- Lista de Mascotas -->
   <ul>
-    <li *ngFor="let mascota of mascotasPerdidas">
+    <li *ngFor="let mascota of mascotasPagina">
       <app-mascota-perdida-card [mascota]="mascota"></app-mascota-perdida-card>
     </li>
   </ul>
+
+  <!-- Botón "Ver Más" si hay más mascotas -->
+  <div *ngIf="mascotasPagina.length < filterMascotasBySearch().length">
+    <button (click)="cargarMas()">Ver más</button>
+  </div>
 </div>

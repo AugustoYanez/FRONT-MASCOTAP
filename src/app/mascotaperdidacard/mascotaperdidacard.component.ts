@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { IMascota } from '../interfaces/Mascota';
 import { UserService } from '../services/user.service';
-
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-mascota-perdida-card',
   standalone: true,
+  imports: [FormsModule, CommonModule],
   templateUrl: './mascotaperdidacard.component.html',
   styleUrls: ['./mascotaperdidacard.component.css']
 })

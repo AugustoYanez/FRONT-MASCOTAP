@@ -1,25 +1,24 @@
-// page/mascotas-perdidas/mascotas-perdidas.component.ts
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { IMascota } from '../../interfaces/Mascota';
 import { DataSharedService } from '../../services/data-shared.service';
 import { CommonModule } from '@angular/common';
-import { Contacto, Documento, Rol } from '../../interfaces/enums';
-import { IUsuario } from '../../interfaces/Usuario';
-import { inject } from '@angular/core';
-import { RouterOutlet, Routes, RouterModule } from '@angular/router';
 import { MascotaMiniComponent } from '../../components/mascota-mini/mascota-mini.component';
 import { MascotaPerdidaCardComponent } from '../../mascotaperdidacard/mascotaperdidacard.component';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-mascotas-perdidas',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterModule, MascotaMiniComponent, MascotaPerdidaCardComponent],
+  imports: [FormsModule, CommonModule, MascotaMiniComponent, MascotaPerdidaCardComponent],
   templateUrl: './mascotas-perdidas.component.html',
   styleUrls: ['./mascotas-perdidas.component.css']
 })
 export class MascotasPerdidasComponent implements OnInit {
-  mascotasPerdidas: IMascota[] = [];
+  mascotasPerdidas: IMascota[] = []; // Todas las mascotas perdidas
+  mascotasPagina: IMascota[] = []; // Mascotas que se mostrarán en la página
+  page: number = 1; // Página actual
+  pageSize: number = 3; // Número de mascotas por página
+  searchTerm: string = ''; // Término de búsqueda por nombre
 
   constructor(
     private userService: UserService,
@@ -34,11 +33,31 @@ export class MascotasPerdidasComponent implements OnInit {
         this.mascotasPerdidas.forEach(mascota => {
           this.sharedData.changeData(mascota._id, mascota);
         });
+        this.updatePagina(); // Actualiza la página inicial
       },
       error => {
         console.error('Error al obtener mascotas perdidas:', error);
       }
     );
   }
-}
 
+  // Actualiza la lista de mascotas a mostrar según la página actual y filtro de búsqueda
+  updatePagina() {
+    const filteredMascotas = this.filterMascotasBySearch();
+    const startIndex = (this.page - 1) * this.pageSize;
+    this.mascotasPagina = filteredMascotas.slice(startIndex, startIndex + this.pageSize);
+  }
+
+  // Filtra las mascotas por el nombre (caso insensible)
+  filterMascotasBySearch() {
+    return this.mascotasPerdidas.filter(mascota => 
+      mascota.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
+  // Carga más mascotas (cambia la página)
+  cargarMas() {
+    this.page++;
+    this.updatePagina();
+  }
+}
