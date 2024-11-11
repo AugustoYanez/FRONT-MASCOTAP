@@ -10,6 +10,7 @@ import { AuthGuard } from './auth.guard';
 import { AgregarMascotaComponent } from './page/agregar-mascota/agregar-mascota.component';
 import { adminGuard } from './admin.guard';
 import { CaracteristicasComponent } from './page/caracteristicas/caracteristicas.component';
+import { PanelControlComponent } from './page/panel-control/panel-control.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -36,7 +37,7 @@ export const routes: Routes = [
     path: 'admin',
     canActivate: [adminGuard],
     children: [
-      { path: 'caracteristicas', component: CaracteristicasComponent }
+      { path: 'panel-control', component: PanelControlComponent }
     ]
   }
 ];
