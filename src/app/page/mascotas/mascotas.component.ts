@@ -8,6 +8,7 @@ import { inject } from '@angular/core';
 import { RouterOutlet, Routes, RouterModule } from '@angular/router';
 import { MascotaMiniComponent } from '../../components/mascota-mini/mascota-mini.component';
 import { DataSharedService } from '../../services/data-shared.service';
+import { MascotaService } from '../../services/mascota.service';
 
 @Component({
   selector: 'app-mascotas',
@@ -17,7 +18,7 @@ import { DataSharedService } from '../../services/data-shared.service';
   styleUrl: './mascotas.component.css'
 })
 export class MascotasComponent {
-  user: UserService = inject(UserService)
+  mascota: MascotaService = inject(MascotaService)
   usuario: IUsuario | null = null;
   mascotas: IMascota[] = [];
 
@@ -26,7 +27,7 @@ export class MascotasComponent {
   }
 
   ngOnInit() {
-    this.user.traerMascotas().subscribe(data => {
+    this.mascota.traerMascotas().subscribe(data => {
       this.mascotas = data || [];
       this.mascotas.forEach(mascota => {
         this.sharedData.changeData(mascota._id, mascota)

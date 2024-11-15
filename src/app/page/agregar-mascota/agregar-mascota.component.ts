@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { inject } from '@angular/core';
 import { IMascota } from '../../interfaces/Mascota';
 import { Router } from '@angular/router';
 import { Estado } from '../../interfaces/enums';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
+import { MascotaService } from '../../services/mascota.service';
 
 @Component({
   selector: 'app-agregar-mascota',
@@ -17,7 +17,7 @@ import { throwError } from 'rxjs';
   styleUrls: ['./agregar-mascota.component.css']
 })
 export class AgregarMascotaComponent {
-  userService: UserService = inject(UserService);
+  mascotaService: MascotaService = inject(MascotaService);
   router: Router = inject(Router);
   mascotaForm: FormGroup;
   currentStep: number = 0; // Para controlar el paso actual
@@ -108,7 +108,7 @@ export class AgregarMascotaComponent {
               ...this.mascotaForm.value,
               imagen: this.urlImagen || ""  // Agregar la url de la imagen al objeto mascota si hay imagen subida
             };
-            this.userService.agregarMascota(nuevaMascota).subscribe({
+            this.mascotaService.agregarMascota(nuevaMascota).subscribe({
               next: (respuesta) => {
                 this.router.navigate(['/mascotas']);
               },

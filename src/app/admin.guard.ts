@@ -17,14 +17,8 @@ export class adminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    if (this.authService.loggedIn('token')) {
-      let admin: boolean = false;
-      this.authService.isAdmin$.subscribe((is) => {
-        admin = is;
-      });
-      if (admin) {
+    if (this.authService.loggedIn('token') && !!this.authService.getToken("rol")) {
         return true;
-      }
     }
     this.authService.setRedirectUrl(state.url); // Almacena la URL solicitada
     this.router.navigate(['/']);

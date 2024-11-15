@@ -1,0 +1,22 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-900">  
+    <form (ngSubmit)="guardarCaracteristica($event)" class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-4xl">  
+      <h2 class="text-white text-2xl font-bold mb-6 text-center">Agregar Caracteristica</h2>  
+
+        <div class="grid grid-cols-2 gap-4">
+            <div class="mb-4 col-span-1">
+            <label class="block text-gray-300 mb-2" for="nombre">Ingrese la caracteristica</label>
+            <input [(ngModel)]="caracteristica.nombre" name="nombre" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="nombre" placeholder="Nombre">
+            </div>
+
+            <div class="mb-4 col-span-1">
+            <label class="block text-gray-300 mb-2" for="tipoDato">Ingrese su tipo de dato</label>
+            <select [(ngModel)]="caracteristica.tipoDato" name="tipoDato" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="tipoDato">
+                <option *ngFor="let doc of getEnumValues(tipoDato)" [value]="doc">{{doc}}</option>
+            </select>
+            </div>
+        </div>
+  
+        <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded mt-4" type="submit">Guardar</button>
+    </form>
+  </div>
+  

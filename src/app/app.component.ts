@@ -4,6 +4,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from './services/auth.service';
 import { Router } from 'express';
 import { Subscription } from 'rxjs';
+import { Rol } from './interfaces/enums';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,16 +15,16 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit {
   admin: boolean = false;
   auth: AuthService = inject(AuthService);
-  private authSubscription: Subscription;
+  private authSubscription: Subscription;  
   constructor() {
     this.authSubscription = this.auth.isAdmin$.subscribe(
       (isAdmin) => {
-        this.admin = isAdmin;
+        this.admin = isAdmin == Rol.Administrador;
       }
-    )
+    ) 
   }
   ngOnInit(){
-    this.auth.isAdmin()
+    this.auth.isAdmin() 
   }
 
   

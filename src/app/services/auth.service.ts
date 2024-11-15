@@ -19,7 +19,7 @@ export class AuthService {
   private redirectUrl: string | null = null;
 
   // Observable para el estado de admin
-  private isAdminSubject = new BehaviorSubject<boolean>(false);
+  private isAdminSubject = new BehaviorSubject<string | null>(null);
   isAdmin$ = this.isAdminSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -45,10 +45,12 @@ export class AuthService {
         this.user.perfil().subscribe({
           next: (res) => {
             console.log(res);
-            this.isAdminSubject.next(res.rol == Rol.Administrador)
+            this.storage.setItem("rol", res.rol)
+            this.isAdminSubject.next(res.rol)
           },
           error: () => {
-            this.isAdminSubject.next(false);
+            this.storage.removeItem("rol")
+            this.isAdminSubject.next(null);
           }
         });
       }
@@ -64,7 +66,7 @@ export class AuthService {
 
   logout() {
     this.storage.clear();
-    this.isAdminSubject.next(false);
+    this.isAdminSubject.next(null);
   }
 
   setRedirectUrl(url: string): void {

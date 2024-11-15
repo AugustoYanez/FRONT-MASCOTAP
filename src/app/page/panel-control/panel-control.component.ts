@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-panel-control',
@@ -8,8 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './panel-control.component.css'
 })
 export class PanelControlComponent {
-  caracteristicas(){
+  constructor(private router: Router){
 
+  }
+  caracteristicas(){
+    this.router.navigate(['/admin/caracteristicas'])
   }
   solicitudes(){
     
