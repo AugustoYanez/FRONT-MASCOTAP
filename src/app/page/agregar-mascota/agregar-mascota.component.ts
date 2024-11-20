@@ -6,8 +6,9 @@ import { inject } from '@angular/core';
 import { IMascota } from '../../interfaces/Mascota';  
 import { Router } from '@angular/router';  
 import { Estado } from '../../interfaces/enums';  
-import { HttpClient } from '@angular/common/http';  
-import { throwError } from 'rxjs';  
+import { HttpClient, HttpHeaders } from '@angular/common/http';  
+import { throwError } from 'rxjs';
+import { MascotaService } from '../../services/mascota.service';  
 
 @Component({  
   selector: 'app-agregar-mascota',  

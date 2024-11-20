@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { MascotaMiniComponent } from '../../components/mascota-mini/mascota-mini.component';
 import { MascotaPerdidaCardComponent } from '../../mascotaperdidacard/mascotaperdidacard.component';
 import { FormsModule } from '@angular/forms';
+import { MascotaService } from '../../services/mascota.service';
 
 @Component({
   selector: 'app-mascotas-perdidas',
@@ -23,7 +24,7 @@ export class MascotasPerdidasComponent implements OnInit {
   noResults: boolean = false; // Indica si no se encontraron resultados
 
   constructor(
-    private userService: UserService,
+    private userService: MascotaService,
     private sharedData: DataSharedService
   ) {}
 

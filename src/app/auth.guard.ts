@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (this.authService.loggedIn()) {
+    if (this.authService.loggedIn("token")) {
       return true;
     }
     this.authService.setRedirectUrl(state.url); // Almacena la URL solicitada
