@@ -27,6 +27,7 @@ describe('MascotaMiniComponent', () => {
       nombre: 'Firulais',
       apodo: 'Firu',
       estado: Estado.EnCasa,
+      ubicacion: 'Calle 123',
       edad: 3,
       descripcion: 'Un perro amigable y energético.',
       imagen: 'path/to/image.jpg',
