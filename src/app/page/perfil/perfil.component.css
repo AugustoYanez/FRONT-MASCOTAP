@@ -1,11 +1,18 @@
-.perfil-container {  
-    padding: 2rem;  
-}  
 
-nav {  
-    margin: 1rem 0;  
-}  
+  /* Eliminar la barra de desplazamiento del body pero mantener el scroll dentro de los contenedores */
+  body {
+    margin: 0; /* Eliminar márgenes para evitar problemas de desplazamiento */
+    overflow: hidden; /* Deshabilita la barra de desplazamiento en el body */
+  }
 
-button {  
-    margin-right: 1rem;  
-} 
+  .scroll-container {
+    overflow-y: scroll; /* Mantiene el scroll habilitado pero oculta la barra */
+    -ms-overflow-style: none; /* Para IE y Edge */
+    scrollbar-width: none; /* Para Firefox */
+  }
+
+  /* Para navegadores Webkit (Chrome, Safari, Opera) */
+  .scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+

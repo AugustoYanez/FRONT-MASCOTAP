@@ -82,68 +82,80 @@
         </div>
       </div>
 
-      <!-- Paso 6: Descripción -->
-      <div *ngIf="currentStep === 5">
-        <div class="mb-4">
-          <label class="block text-gray-700">¿Cuál es la descripción de la mascota?</label>
-          <textarea formControlName="descripcion" placeholder="Ingrese la descripción"
-            class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>
-          <div
-            *ngIf="mascotaForm.controls['descripcion'].invalid && (mascotaForm.controls['descripcion'].dirty || mascotaForm.controls['descripcion'].touched)"
-            class="text-red-500 text-sm mt-1">
-            Este campo es requerido.
-          </div>
-        </div>
-      </div>
 
-      <!-- Paso 7: Imagen -->
-      <div *ngIf="currentStep === 6">
-        <div class="mb-4">
-          <label class="block text-gray-700">¿Cuál es la imagen de la mascota?</label>
-          <input type="file" (change)="onImageSelected($event)" 
-            class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
-          <div *ngIf="imagenArchivo" class="mt-2">
-            <span class="text-gray-700">Archivo seleccionado: {{ imagenArchivo.name }}</span>
-          </div>
-          <div
-            *ngIf="mascotaForm.controls['imagen'].invalid && (mascotaForm.controls['imagen'].dirty || mascotaForm.controls['imagen'].touched)"
-            class="text-red-500 text-sm mt-1">
-            Este campo es requerido.
-          </div>
-        </div>
-      </div>
+     <!-- Paso 6: Ubicación -->  
+<!-- Paso 6: Ubicación -->  
+<div *ngIf="currentStep === 5">  
+  <div class="mb-4">  
+    <label class="block text-gray-700">{{ preguntaUbicacion }}</label> <!-- Cambia aquí -->  
+    <input type="text" formControlName="ubicacion" placeholder="Ingrese la ubicación"  
+      class="mt-1 block w-full border border-gray-300 rounded-md p-2" />  
+    <div  
+      *ngIf="mascotaForm.controls['ubicacion'].invalid && (mascotaForm.controls['ubicacion'].dirty || mascotaForm.controls['ubicacion'].touched)"  
+      class="text-red-500 text-sm mt-1">  
+      Este campo es requerido.  
+    </div>  
+  </div>  
+</div>  
 
+<!-- Paso 7: Descripción -->  
+<div *ngIf="currentStep === 6">  
+  <div class="mb-4">  
+    <label class="block text-gray-700">¿Cuál es la descripción de la mascota?</label>  
+    <textarea formControlName="descripcion" placeholder="Ingrese la descripción"  
+      class="mt-1 block w-full border border-gray-300 rounded-md p-2"></textarea>  
+    <div  
+      *ngIf="mascotaForm.controls['descripcion'].invalid && (mascotaForm.controls['descripcion'].dirty || mascotaForm.controls['descripcion'].touched)"  
+      class="text-red-500 text-sm mt-1">  
+      Este campo es requerido.  
+    </div>  
+  </div>  
+</div>  
 
-      <!-- Paso 8: Características -->
-      <div *ngIf="currentStep === 7">
-        <div class="mb-4">
-          <label class="block text-gray-700">¿Cuáles son las características de la mascota?</label>
-          <input type="text" formControlName="caracteristicas" placeholder="Ingrese las características"
-            class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
-          <div
-            *ngIf="mascotaForm.controls['caracteristicas'].invalid && (mascotaForm.controls['caracteristicas'].dirty || mascotaForm.controls['caracteristicas'].touched)"
-            class="text-red-500 text-sm mt-1">
-            Este campo es requerido.
-          </div>
-        </div>
-      </div>
+<!-- Paso 8: Imagen -->  
+<div *ngIf="currentStep === 7">  
+  <div class="mb-4">  
+    <label class="block text-gray-700">¿Cuál es la imagen de la mascota?</label>  
+    <input type="file" (change)="onImageSelected($event)"   
+      class="mt-1 block w-full border border-gray-300 rounded-md p-2" />  
+    <div *ngIf="imagenArchivo" class="mt-2">  
+      <span class="text-gray-700">Archivo seleccionado: {{ imagenArchivo.name }}</span>  
+    </div>  
+    <div  
+      *ngIf="mascotaForm.controls['imagen'].invalid && (mascotaForm.controls['imagen'].dirty || mascotaForm.controls['imagen'].touched)"  
+      class="text-red-500 text-sm mt-1">  
+      Este campo es requerido.  
+    </div>  
+  </div>  
+</div>  
 
-      <div class="flex justify-between mt-6">
-        <button type="button" (click)="previousStep()" class="bg-gray-500 text-white p-2 rounded"
-          *ngIf="currentStep > 0">
-          Atrás
-        </button>
-        <button type="button" (click)="nextStep()" class="bg-blue-500 text-white p-2 rounded"
-          *ngIf="currentStep < totalSteps - 1">
-          Siguiente
-        </button>
-      </div>
+<!-- Paso 9: Características -->  
+<div *ngIf="currentStep === 8">  
+  <div class="mb-4">  
+    <label class="block text-gray-700">¿Cuáles son las características de la mascota?</label>  
+    <input type="text" formControlName="caracteristicas" placeholder="Ingrese las características"  
+      class="mt-1 block w-full border border-gray-300 rounded-md p-2" />  
+    <div  
+      *ngIf="mascotaForm.controls['caracteristicas'].invalid && (mascotaForm.controls['caracteristicas'].dirty || mascotaForm.controls['caracteristicas'].touched)"  
+      class="text-red-500 text-sm mt-1">  
+      Este campo es requerido.  
+    </div>  
+  </div>  
+</div>  
 
-      <div class="text-center mt-4">
-        <button type="submit" class="bg-green-500 text-white p-2 rounded" *ngIf="currentStep === totalSteps - 1">
-          Registrar Mascota
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
+<div class="flex justify-between mt-6">  
+  <button type="button" (click)="previousStep()" class="bg-gray-500 text-white p-2 rounded"  
+    *ngIf="currentStep > 0">  
+    Atrás  
+  </button>  
+  <button type="button" (click)="nextStep()" class="bg-blue-500 text-white p-2 rounded"  
+    *ngIf="currentStep < totalSteps - 1">  
+    Siguiente  
+  </button>  
+</div>  
+
+<div class="text-center mt-4">  
+  <button type="submit" class="bg-green-500 text-white p-2 rounded" *ngIf="currentStep === totalSteps - 1">  
+    Registrar Mascota  
+  </button>  
+</div>  

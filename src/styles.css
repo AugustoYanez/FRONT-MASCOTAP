@@ -1,5 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
-@import './input.css';
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* styles.css o styles.scss */
+body {
+    background-color: #111827; /* Gris claro */
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Asegura que la página ocupe toda la altura */
+    overflow-x: hidden; /* Evita desplazamiento horizontal */
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  

@@ -41,6 +41,14 @@
                type="number" id="edad" name="edad" placeholder="Edad">
       </div>
 
+      
+      <div class="mb-4 col-span-2 sm:col-span-1">
+        <label class="block text-gray-300 mb-2" for="edad">Ubicación</label>
+        <input [(ngModel)]="mascota.ubicacion"
+               class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+               type="text" id="ubicacion" name="ubicacion" placeholder="ubicacion">
+      </div>
+
       <div class="mb-4 col-span-2">
         <label class="block text-gray-300 mb-2" for="descripcion">Descripción</label>
         <textarea [(ngModel)]="mascota.descripcion"

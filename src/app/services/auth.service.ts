@@ -15,6 +15,16 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) { 
   }
 
+  private isLocalStorageAvailable(): boolean {
+    return typeof window !== 'undefined' && !!window.localStorage;
+  }
+  limpiarLogs(): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('admin');
+    }
+  }
+
   register(user: IUsuario): Observable<any> {
     return this.http.post<IUsuario>(`${this.THISURL}`+ '/register', user);
   }
