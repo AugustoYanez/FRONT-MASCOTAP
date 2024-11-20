@@ -1,27 +1,34 @@
-<div class="mascotas-perdidas">
-  <h2>Mascotas Perdidas</h2>
+<div class="mascotas-perdidas p-4">
+  <h2 class="text-2xl font-bold mb-4 text-white">Mascotas Perdidas</h2>
+
 
   <!-- Contenedor para la búsqueda y el botón -->
-  <div class="search-container">
+  <div class="search-container flex items-center mb-4">
     <input
       type="text"
       [(ngModel)]="searchTerm"
       (input)="updatePagina()"
       placeholder="Buscar por nombre..."
-      class="search-input"
+      class="search-input p-2 border rounded-md flex-1"
     />
-    <button (click)="cargarMas()">Ver más</button>
+    <button (click)="updatePagina()" class="ml-2 p-2 bg-blue-500 text-white rounded-md">🔍</button>
+  </div>
+
+  <!-- Mensaje de no resultados -->
+  <div *ngIf="noResults" class="text-red-500 mb-4">
+    No se encontró la mascota con nombre "{{ searchTerm }}"
   </div>
 
   <!-- Lista de Mascotas -->
-  <ul>
-    <li *ngFor="let mascota of mascotasPagina">
+  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <li *ngFor="let mascota of mascotasPagina" class="bg-gray-800 text-white shadow-lg rounded-lg p-4 hover:bg-gray-700 transition-colors">
       <app-mascota-perdida-card [mascota]="mascota"></app-mascota-perdida-card>
     </li>
   </ul>
 
-  <!-- Botón "Ver Más" si hay más mascotas -->
-  <div *ngIf="mascotasPagina.length < filterMascotasBySearch().length">
-    <button (click)="cargarMas()">Ver más</button>
+  <!-- Botón "Ver Más" o "Volver Atrás" -->
+  <div class="flex justify-center mt-4">
+    <button *ngIf="(page * pageSize) < filterMascotasBySearch().length" (click)="cargarMas()" class="p-2 bg-blue-500 text-white rounded-md">Ver más</button>
+    <button *ngIf="(page * pageSize) >= filterMascotasBySearch().length && page > 1" (click)="volverAtras()" class="p-2 bg-gray-500 text-white rounded-md">Volver atrás</button>
   </div>
 </div>

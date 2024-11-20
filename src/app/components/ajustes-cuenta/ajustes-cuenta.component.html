@@ -1,38 +1,52 @@
-<div class="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-24">
-    <div class="p-6">
-        <h2 class="text-2xl font-bold mb-4">Información Personal</h2>
-        <div class="mb-4">
-            <label class="block text-gray-700">Email</label>
-            <p class="text-gray-600">{{ usuario.email}}</p>
+<div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-24">
+    <div class="p-6 bg-gray-100">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">Información Personal</h2>
+
+        <!-- Email Section -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold">Email</label>
+            <p class="text-gray-600">{{ usuario.email }}</p>
             <a href="#" class="text-blue-500 hover:underline">Editar</a>
         </div>
-        <hr class="my-2"> <!-- Línea debajo de Email -->
-        <div class="mb-4">
-            <label class="block text-gray-700">Nombre</label>
-            <p class="text-gray-600">{{ usuario.nombre}}</p>
+        <hr class="my-2">
+
+        <!-- Nombre Section -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold">Nombre</label>
+            <p class="text-gray-600">{{ usuario.nombre }}</p>
             <a href="#" class="text-blue-500 hover:underline">Editar</a>
         </div>
-        <hr class="my-2"> <!-- Línea debajo de Nombre -->
-        <div class="mb-4">
-            <label class="block text-gray-700">Teléfono</label>
-            <p class="text-gray-600">{{ usuario.telefono}}</p>
+        <hr class="my-2">
+
+        <!-- Teléfono Section -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold">Teléfono</label>
+            <p class="text-gray-600">{{ usuario.telefono }}</p>
             <a href="#" class="text-blue-500 hover:underline">Editar</a>
         </div>
-        <hr class="my-2"> <!-- Línea debajo de Teléfono -->
-        <div class="mb-4">
-            <label class="block text-gray-700">Documento</label>
-            <p class="text-gray-600">{{ usuario.nroDocumento}}</p>
+        <hr class="my-2">
+
+        <!-- Documento Section -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold">Documento</label>
+            <p class="text-gray-600">{{ usuario.nroDocumento }}</p>
             <a href="#" class="text-blue-500 hover:underline">Editar</a>
         </div>
-        <hr class="my-2"> <!-- Línea debajo de Ubicación -->
-        <div class="mb-4">
-            <label class="block text-gray-700">Contraseña</label>
+        <hr class="my-2">
+
+        <!-- Contraseña Section -->
+        <div class="mb-6">
+            <label class="block text-gray-700 font-semibold">Contraseña</label>
             <p class="text-gray-600">*******</p>
             <a href="#" class="text-blue-500 hover:underline">Editar</a>
         </div>
-        <hr class="my-2"> <!-- Línea debajo de Contraseña -->
+        <hr class="my-2">
+
+        <!-- Eliminar Cuenta Button -->
         <div class="mt-6">
-            <button class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600">Eliminar Cuenta</button>
+            <button class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition duration-200">
+                Eliminar Cuenta
+            </button>
         </div>
     </div>
 </div>

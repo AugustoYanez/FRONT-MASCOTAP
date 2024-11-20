@@ -1,7 +1,10 @@
-<div class="p-4 max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-  <div class="mascota-info">
+<div class="p-2 max-w-xs mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+  <!-- Imagen de la mascota -->
+  <img src="{{mascota.imagen}}" alt="Imagen de {{mascota.nombre}}" class="w-full h-24 object-cover">
+
+  <div class="mascota-info p-2">
     <!-- Nombre de la mascota -->
-    <h3 class="text-2xl font-semibold text-indigo-600 mb-2">{{mascota.nombre}}</h3>
+    <h3 class="text-xl font-semibold text-indigo-600 mb-2">{{mascota.nombre}}</h3>
 
     <!-- Información de la mascota -->
     <p class="text-sm text-gray-700"><strong>Placa ID:</strong> {{mascota.placaID}}</p>
@@ -9,16 +12,16 @@
     <p class="text-sm text-gray-700 mt-1"><strong>Edad:</strong> {{mascota.edad}} años</p>
 
     <!-- Botones de acción -->
-    <div class="mt-4 flex space-x-4">
+    <div class="mt-4 flex space-x-2">
       <button 
         (click)="encontreMascota()" 
-        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        class="px-2 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
         Encontre a esta mascota
       </button>
 
       <button 
         (click)="contactarDuenio()" 
-        class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+        class="px-2 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
         Contactar dueño
       </button>
     </div>

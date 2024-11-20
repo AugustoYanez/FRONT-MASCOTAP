@@ -1,25 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Contacto, Documento, Rol } from '../../interfaces/enums';
-import { IUsuario } from '../../interfaces/Usuario';
 import { UserService } from '../../services/user.service';
 import { IMascota } from '../../interfaces/Mascota';
 import { inject } from '@angular/core';
-import { RouterOutlet, Routes, RouterModule } from '@angular/router';
 import { MascotaMiniComponent } from '../../components/mascota-mini/mascota-mini.component';
 import { DataSharedService } from '../../services/data-shared.service';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-mascotas',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterModule, MascotaMiniComponent],
+  imports: [RouterModule, CommonModule, MascotaMiniComponent],
   templateUrl: './mascotas.component.html',
   styleUrls: ['./mascotas.component.css']
 })
 export class MascotasComponent {
   user: UserService = inject(UserService);
-  usuario: IUsuario | null = null;
   mascotas: IMascota[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 10;  // Mostramos 10 mascotas por página
 
   constructor(private sharedData: DataSharedService) {}
 
@@ -32,5 +30,23 @@ export class MascotasComponent {
       });
     });
   }
-}
 
+  // Calcula las mascotas que deben mostrarse en la página actual
+  get currentMascotas() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    return this.mascotas.slice(startIndex, endIndex);
+  }
+
+  // Cargar más mascotas (incrementar página)
+  loadMoreMascotas() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  // Número total de páginas
+  get totalPages() {
+    return Math.ceil(this.mascotas.length / this.itemsPerPage);
+  }
+}
