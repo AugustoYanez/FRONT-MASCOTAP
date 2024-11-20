@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { MascotasPerdidasComponent } from './mascotas-perdidas.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MascotasPerdidasComponent } from './mascotas-perdidas.component';  // Importa el componente standalone
+import { provideHttpClient } from '@angular/common/http';
 
 describe('MascotasPerdidasComponent', () => {
   let component: MascotasPerdidasComponent;
@@ -8,7 +9,11 @@ describe('MascotasPerdidasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MascotasPerdidasComponent]
+      imports: [
+        MascotasPerdidasComponent,  // IMPORTAR el componente standalone aquí
+        HttpClientTestingModule     // Agregar el módulo de pruebas de HttpClient
+      ],
+      providers: [provideHttpClient()]  // Proporciona HttpClient
     })
     .compileComponents();
 
