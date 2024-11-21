@@ -16,6 +16,6 @@ export class PanelControlComponent {
     this.router.navigate(['/admin/caracteristicas'])
   }
   solicitudes(){
-    
+    this.router.navigate(['/admin/solicitudes'])
   }
 }

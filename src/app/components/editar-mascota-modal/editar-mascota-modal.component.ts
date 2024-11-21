@@ -4,6 +4,10 @@ import { IMascota } from '../../interfaces/Mascota';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { tipoDato } from '../../interfaces/enums';
+import { ICaracteristicas } from '../../interfaces/Caracteristica';
+import { MascotaService } from '../../services/mascota.service';
+import { CaracteristicasService } from '../../services/caracteristicas.service';
 
 export enum Estado {
   EnCasa = "EN MI HOGAR",
@@ -28,7 +32,7 @@ export class EditarMascotaModalComponent {
   url = 'http://localhost:3000/';
   modificarImagen: boolean = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: IMascota, public dialogRef: MatDialogRef<EditarMascotaModalComponent>, private http: HttpClient){
+  constructor(@Inject(MAT_DIALOG_DATA) public data: IMascota,  public dialogRef: MatDialogRef<EditarMascotaModalComponent>, private http: HttpClient){
     this.mascota = {
       _id: data._id,
       placaID: data.placaID,
@@ -39,7 +43,8 @@ export class EditarMascotaModalComponent {
       imagen: data.imagen,
       caracteristicas: data.caracteristicas,
       estado: data.estado,
-      ubicacion: data.ubicacion
+      ubicacion: data.ubicacion,
+      solicitud: data.solicitud
     };
   }
 

@@ -130,18 +130,40 @@
 </div>  
 
 <!-- Paso 9: Características -->  
-<div *ngIf="currentStep === 8">  
-  <div class="mb-4">  
-    <label class="block text-gray-700">¿Cuáles son las características de la mascota?</label>  
-    <input type="text" formControlName="caracteristicas" placeholder="Ingrese las características"  
-      class="mt-1 block w-full border border-gray-300 rounded-md p-2" />  
-    <div  
-      *ngIf="mascotaForm.controls['caracteristicas'].invalid && (mascotaForm.controls['caracteristicas'].dirty || mascotaForm.controls['caracteristicas'].touched)"  
-      class="text-red-500 text-sm mt-1">  
-      Este campo es requerido.  
-    </div>  
-  </div>  
-</div>  
+<div *ngIf="currentStep === 8">
+  <div class="mb-4">
+    <label class="block text-gray-700">Características de la mascota:</label>
+
+    <div *ngFor="let control of caracteristicasControls; let i = index">
+      <label class="block text-gray-500">{{ caracteristicasDinamicas[i].nombre }}</label>
+
+      <!-- Input dinámico basado en el tipo -->
+      <ng-container [ngSwitch]="caracteristicasDinamicas[i].tipoDato">
+        <!-- String -->
+        <input *ngSwitchCase="this.enum.string" type="text" [formControl]="control"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+
+        <!-- Int -->
+        <input *ngSwitchCase="this.enum.int" type="number" [formControl]="control"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+
+        <!-- Boolean -->
+        <div *ngSwitchCase="this.enum.boolean" class="flex items-center mt-1">
+          <input type="checkbox" [formControl]="control" class="mr-2" />
+          <span>¿Sí o No?</span>
+        </div>
+
+        <!-- Fallback -->
+        <input *ngSwitchDefault type="text" [formControl]="control"
+          class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+      </ng-container>
+
+      <div *ngIf="control.invalid && (control.dirty || control.touched)" class="text-red-500 text-sm mt-1">
+        Campo inválido.
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="flex justify-between mt-6">  
   <button type="button" (click)="previousStep()" class="bg-gray-500 text-white p-2 rounded"  

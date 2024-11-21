@@ -24,13 +24,13 @@ export class MascotasPerdidasComponent implements OnInit {
   noResults: boolean = false; // Indica si no se encontraron resultados
 
   constructor(
-    private userService: MascotaService,
+    private mascotaService: MascotaService,
     private sharedData: DataSharedService
   ) {}
 
   ngOnInit() {
     this.sharedData.clear();  // Limpia cualquier dato previo
-    this.userService.traerMascotasPerdidas().subscribe(
+    this.mascotaService.traerMascotasPerdidas().subscribe(
       data => {
         this.mascotasPerdidas = data || [];
         this.mascotasPerdidas.forEach(mascota => {

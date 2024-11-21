@@ -4,6 +4,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
 import { Rol } from './interfaces/enums';
+import { CaracteristicasService } from './services/caracteristicas.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
   admin: boolean = false;
   auth: AuthService = inject(AuthService);
   private authSubscription: Subscription;  
-  constructor() {
+  constructor(private caracteristicasService: CaracteristicasService) {
     this.authSubscription = this.auth.isAdmin$.subscribe(
       (isAdmin) => {
         this.admin = isAdmin == Rol.Administrador;
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(){
     this.auth.isAdmin() 
+    this.caracteristicasService.loadCaracteristicas().subscribe();
   }
 
   

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IMascota } from '../interfaces/Mascota';
-import { Estado } from '../interfaces/enums';
+import { Estado, Solicitud } from '../interfaces/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,8 @@ export class DataSharedService {
     imagen: '',
     caracteristicas: '',
     estado: Estado.Adoptada,
-    ubicacion: ''
+    ubicacion: '',
+    solicitud: Solicitud.aceptado
   };
 
   private dataSources: { [id: string]: BehaviorSubject<IMascota> } = {};

@@ -17,6 +17,7 @@ import { adminGuard } from './admin.guard';
 import { CaracteristicasComponent } from './page/caracteristicas/caracteristicas.component';
 import { PanelControlComponent } from './page/panel-control/panel-control.component';
 import { FormCaracteristicasComponent } from './page/form-caracteristicas/form-caracteristicas.component';
+import { SolicitudesComponent } from './page/solicitudes/solicitudes.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -55,7 +56,8 @@ export const routes: Routes = [
     children: [
       { path: 'panel-control', component: PanelControlComponent },
       { path: 'caracteristicas', component: CaracteristicasComponent },
-      {path: 'form-caracteristicas', component: FormCaracteristicasComponent}
+      {path: 'form-caracteristicas', component: FormCaracteristicasComponent},
+      { path: 'solicitudes', component: SolicitudesComponent }
     ]
   }
 ];
