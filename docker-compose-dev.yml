@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENVIRONMENT: dev
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend  # Asegura que el backend se inicie antes del frontend
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: ../BACK-MASCOTAP  # Contexto para el backend está en la raíz del proyecto backend
+      dockerfile: Dockerfile  # Asegúrate de que el Dockerfile está en la raíz del proyecto backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - DATABASE=mongodb://mongodb:27017/mascotaApp
+      - TOKEN_SECRET=secet
+volumes:
+ mongo_data:
