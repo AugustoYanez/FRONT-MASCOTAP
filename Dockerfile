@@ -8,7 +8,7 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-ARG ENVIRONMENT
+ARG ENVIRONMENT=production
 RUN npm run build:${ENVIRONMENT}
 
 # Etapa 2: Servir la aplicación usando un servidor estático
