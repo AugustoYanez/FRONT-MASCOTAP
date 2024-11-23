@@ -1,28 +1,30 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-900">  
-    <form (ngSubmit)="guardarUsuario($event)" class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">  
-      <h2 class="text-white text-2xl font-bold mb-6 text-center">INICIAR SESIÓN</h2>  
-      
-      <!-- Bloque de mensaje de éxito -->
-      <div *ngIf="mensajeExito" class="mb-4 p-4 bg-green-500 text-white rounded">
-        {{ mensajeExito }}
+  <form (ngSubmit)="guardarUsuario($event)" class="bg-gray-800 p-8 rounded-lg shadow-lg w-96">  
+    <h2 class="text-white text-2xl font-bold mb-6 text-center">INICIAR SESIÓN</h2>  
+    
+    <!-- Bloque de mensaje de éxito -->
+    <div *ngIf="mensajeExito" class="mb-4 p-4 bg-green-500 text-white rounded">
+      {{ mensajeExito }}
+    </div>
+
+    <!-- Bloque de mensaje de error -->
+    <div *ngIf="mensajeError">
+      <div *ngFor="let err of mensajeError" class="mb-4 p-4 bg-red-500 text-white rounded">{{ err }}</div>
+      <div *ngIf="intentosRestantes !== null" class="mb-4 p-4 bg-yellow-500 text-white rounded">
+        Te quedan {{ intentosRestantes }} intento(s).
       </div>
-  
-      <!-- Bloque de mensaje de error -->
-      <div *ngIf="mensajeError">
-        <div *ngFor="let err of mensajeError" class="mb-4 p-4 bg-red-500 text-white rounded">{{ err }}</div>
-      </div>
-  
-      <div class="mb-4">  
-        <label class="block text-gray-300 mb-2" for="usuario">Email</label>  
-        <input [(ngModel)]="usuario.email" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="usuario" name="email" placeholder="Email">  
-      </div>  
-  
-      <div class="mb-4">  
-        <label class="block text-gray-300 mb-2" for="contrasena">Contraseña</label>  
-        <input [(ngModel)]="usuario.contrasena" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="password" id="contrasena" name="contrasena" placeholder="Contraseña">  
-      </div>  
-  
-      <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded" type="submit">Ingresar</button>  
-    </form>  
-  </div>  
-  
+    </div>
+    
+    <div class="mb-4">  
+      <label class="block text-gray-300 mb-2" for="usuario">Email</label>  
+      <input [(ngModel)]="usuario.email" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" id="usuario" name="email" placeholder="Email">  
+    </div>  
+
+    <div class="mb-4">  
+      <label class="block text-gray-300 mb-2" for="contrasena">Contraseña</label>  
+      <input [(ngModel)]="usuario.contrasena" class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" type="password" id="contrasena" name="contrasena" placeholder="Contraseña">  
+    </div>  
+
+    <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded" type="submit">Ingresar</button>  
+  </form>  
+</div>

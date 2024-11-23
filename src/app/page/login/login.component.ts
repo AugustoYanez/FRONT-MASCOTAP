@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IUsuario } from '../../interfaces/Usuario';
 import { AuthService } from '../../services/auth.service';
-import { Router, RouterEvent } from '@angular/router';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -30,11 +31,9 @@ export class LoginComponent {
   auth: AuthService = inject(AuthService);
   mensajeExito: string | null = null;
   mensajeError: string[] | null = null;
-  
+  intentosRestantes: number | null = null;
 
-constructor(private router: Router) {
-
-}
+  constructor(private router: Router) {}
 
   validarCampos(): string[] {
     const errores: string[] = [];
@@ -67,9 +66,9 @@ constructor(private router: Router) {
       },
       error: (err) => {
         this.mensajeExito = null;
-        this.mensajeError = err.error;
+        this.mensajeError = [err.error[0]];
+        this.intentosRestantes = err.error[1] !== undefined ? Math.max(0, err.error[1]) : null;
       }
     });
-
-}
+  }
 }

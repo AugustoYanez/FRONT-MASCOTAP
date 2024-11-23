@@ -38,7 +38,8 @@ export class EditarMascotaModalComponent {
       descripcion: data.descripcion,
       imagen: data.imagen,
       caracteristicas: data.caracteristicas,
-      estado: data.estado
+      estado: data.estado,
+      ubicacion: data.ubicacion
     };
   }
 
