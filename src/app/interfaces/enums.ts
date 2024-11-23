@@ -20,3 +20,16 @@ export enum Estado{ // para las mascotas
     Adoptada = "LO ENCONTRE",
     Perdida = "LO PERDI",
 }
+
+export enum tipoDato {
+    string = "String",
+    int = "Int",
+    boolean = "Boolean",
+    double = "Double"
+}
+
+export enum Solicitud {
+    aceptado = "ACEPTADO",
+    espera = "ESPERA",
+    rechazado = "RECHAZADO"
+}
