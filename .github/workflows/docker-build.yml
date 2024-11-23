@@ -6,7 +6,7 @@ on:
     branches:
       - main
       - QA
-      dev
+      - dev
 jobs:
   build:
     runs-on: ubuntu-latest
