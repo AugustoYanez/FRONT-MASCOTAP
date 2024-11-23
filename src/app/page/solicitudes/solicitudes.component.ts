@@ -3,6 +3,7 @@ import { IMascota } from '../../interfaces/Mascota';
 import { MascotaService } from '../../services/mascota.service';
 import { CommonModule } from '@angular/common';
 import { SolicitudMascotaComponent } from '../../components/solicitud-mascota/solicitud-mascota.component';
+import { Solicitud } from '../../interfaces/enums';
 
 @Component({
   selector: 'app-solicitudes',
@@ -19,7 +20,9 @@ export class SolicitudesComponent implements OnInit{
 
   ngOnInit() {
     this.mascota.traerMascotas().subscribe(data => {
-      this.mascotas = data || [];
+      this.mascotas = data.filter(mascota => {
+        return mascota.solicitud === Solicitud.espera
+      }) || [];
     });
   }
 }

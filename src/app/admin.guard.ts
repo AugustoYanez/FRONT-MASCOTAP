@@ -6,6 +6,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { Rol } from './interfaces/enums';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ export class adminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    if (this.authService.loggedIn('token') && !!this.authService.getToken("rol")) {
+    if (this.authService.loggedIn('token') && this.authService.getToken("rol") === Rol.Administrador) {
         return true;
     }
     this.authService.setRedirectUrl(state.url); // Almacena la URL solicitada

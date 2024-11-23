@@ -27,7 +27,7 @@ export class MascotasComponent {
 
   ngOnInit() {
     this.sharedData.clear();  // Limpia cualquier dato previo
-    this.mascota.traerMascotas().subscribe(data => {
+    this.mascota.traerMascotasUsuario().subscribe(data => {
       this.mascotas = data || [];
       this.mascotas.forEach(mascota => {
         this.sharedData.changeData(mascota._id, mascota);

@@ -19,6 +19,9 @@ export class MascotaService {
   traerMascotas(): Observable<IMascota[]> {
     return this.http.get<IMascota[]>(`${this.THISURL}`+ '/mascotas');
   }
+  traerMascotasUsuario(): Observable<IMascota[]> {
+    return this.http.get<IMascota[]>(`${this.THISURL}`+ '/mascotasUsuario');
+  }
   agregarMascota(mascota: IMascota): Observable<IMascota> {
     return this.http.post<IMascota>(`${this.THISURL}`+ '/mascotas', mascota);
   }
