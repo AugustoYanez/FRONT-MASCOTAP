@@ -1,96 +1,132 @@
 <div id="modal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
-  <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-4xl">
-    <h2 class="text-white text-2xl font-bold mb-6 text-center">Editar Mascota</h2>
+  <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-3xl">
+    <h2 class="text-white text-xl font-bold mb-4 text-center">Editar Mascota</h2>
 
     <!-- Bloque de mensaje de éxito -->
-    <div *ngIf="mensajeExito" class="mb-4 p-4 bg-green-500 text-white rounded">
+    <div *ngIf="mensajeExito" class="mb-4 p-3 bg-green-500 text-white rounded">
       {{ mensajeExito }}
     </div>
 
     <!-- Bloque de mensaje de error -->
     <div *ngIf="mensajeError">
-      <div *ngFor="let err of mensajeError" class="mb-4 p-4 bg-red-500 text-white rounded">{{ err }}</div>
+      <div *ngFor="let err of mensajeError" class="mb-2 p-2 bg-red-500 text-white rounded">{{ err }}</div>
     </div>
 
-    <form (ngSubmit)="guardarMascota($event)" class="grid grid-cols-2 gap-4">
-      <div class="mb-4 col-span-2 sm:col-span-1">
-        <label class="block text-gray-300 mb-2" for="placaID">Placa ID</label>
-        <input [(ngModel)]="mascota.placaID"
-               class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-               type="text" id="placaID" name="placaID" placeholder="Placa ID">
+    <form (ngSubmit)="guardarMascota($event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- Placa ID -->
+      <div>
+        <label class="block text-gray-300 mb-1" for="placaID">Placa ID</label>
+        <input
+          [(ngModel)]="mascota.placaID"
+          class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text" id="placaID" name="placaID" placeholder="Placa ID"
+        />
       </div>
 
-      <div class="mb-4 col-span-2 sm:col-span-1">
-        <label class="block text-gray-300 mb-2" for="nombre">Nombre</label>
-        <input [(ngModel)]="mascota.nombre"
-               class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-               type="text" id="nombre" name="nombre" placeholder="Nombre">
+      <!-- Nombre -->
+      <div>
+        <label class="block text-gray-300 mb-1" for="nombre">Nombre</label>
+        <input
+          [(ngModel)]="mascota.nombre"
+          class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text" id="nombre" name="nombre" placeholder="Nombre"
+        />
       </div>
 
-      <div class="mb-4 col-span-2 sm:col-span-1">
-        <label class="block text-gray-300 mb-2" for="apodo">Apodo</label>
-        <input [(ngModel)]="mascota.apodo"
-               class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-               type="text" id="apodo" name="apodo" placeholder="Apodo">
+      <!-- Apodo -->
+      <div>
+        <label class="block text-gray-300 mb-1" for="apodo">Apodo</label>
+        <input
+          [(ngModel)]="mascota.apodo"
+          class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text" id="apodo" name="apodo" placeholder="Apodo"
+        />
       </div>
 
-      <div class="mb-4 col-span-2 sm:col-span-1">
-        <label class="block text-gray-300 mb-2" for="edad">Edad</label>
-        <input [(ngModel)]="mascota.edad"
-               class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-               type="number" id="edad" name="edad" placeholder="Edad">
+      <!-- Edad -->
+      <div>
+        <label class="block text-gray-300 mb-1" for="edad">Edad</label>
+        <input
+          [(ngModel)]="mascota.edad"
+          class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="number" id="edad" name="edad" placeholder="Edad"
+        />
       </div>
 
-      
-      <div class="mb-4 col-span-2 sm:col-span-1">
-        <label class="block text-gray-300 mb-2" for="edad">Ubicación</label>
-        <input [(ngModel)]="mascota.ubicacion"
-               class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-               type="text" id="ubicacion" name="ubicacion" placeholder="ubicacion">
+      <!-- Ubicación -->
+      <div class="sm:col-span-2">
+        <label class="block text-gray-300 mb-1" for="ubicacion">Ubicación</label>
+        <input
+          [(ngModel)]="mascota.ubicacion"
+          class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="text" id="ubicacion" name="ubicacion" placeholder="Ubicación"
+        />
       </div>
 
-      <div class="mb-4 col-span-2">
-        <label class="block text-gray-300 mb-2" for="descripcion">Descripción</label>
-        <textarea [(ngModel)]="mascota.descripcion"
-                  class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
+      <!-- Descripción -->
+      <div class="sm:col-span-2">
+        <label class="block text-gray-300 mb-1" for="descripcion">Descripción</label>
+        <textarea
+          [(ngModel)]="mascota.descripcion"
+          class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          id="descripcion" name="descripcion" placeholder="Descripción"
+        ></textarea>
       </div>
 
-      <div class="mb-4 col-span-2 sm:col-span-1">
-        <label class="block text-gray-300 mb-2" for="imagen">Imagen</label>
-        <button type="button" (click)="toggleModificarImagen()"
-                class="w-full p-2 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-          {{ modificarImagen ? 'Cancelar' : 'Modificar Imagen' }}
-        </button>
-        <div *ngIf="!modificarImagen" class="mt-2">
-          <img [src]="mascota.imagen" alt="Imagen de Mascota" class="w-full h-40 object-cover rounded">
+      <!-- Imagen -->
+      <div class="sm:col-span-2">
+        <label class="block text-gray-300 mb-1" for="imagen">Imagen</label>
+        <div class="flex items-center gap-4">
+          <button
+            type="button"
+            (click)="toggleModificarImagen()"
+            class="p-2 bg-blue-500 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            {{ modificarImagen ? 'Cancelar' : 'Modificar Imagen' }}
+          </button>
+          <div *ngIf="!modificarImagen" class="flex-shrink-0">
+            <img [src]="mascota.imagen" alt="Imagen de Mascota" class="w-20 h-20 object-cover rounded">
+          </div>
+          <div *ngIf="modificarImagen" class="flex-grow">
+            <input
+              (change)="onImageSelected($event)"
+              class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              type="file" id="imagen" name="imagen" accept="image/*"
+            />
+          </div>
         </div>
-        <div *ngIf="modificarImagen" class="mt-2">
-          <input (change)="onImageSelected($event)"
-                 class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                 type="file" id="imagen" name="imagen" accept="image/*">
-        </div>
       </div>
 
-      <div class="mb-4 col-span-2 sm:col-span-1">
-        <label class="block text-gray-300 mb-2" for="caracteristicas">Características</label>
-        <textarea [(ngModel)]="mascota.caracteristicas"
-                  class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  id="caracteristicas" name="caracteristicas" placeholder="Características"></textarea>
+      <!-- Características -->
+      <div class="sm:col-span-2">
+        <label class="block text-gray-300 mb-1" for="caracteristicas">Características</label>
+        <textarea
+          [(ngModel)]="mascota.caracteristicas"
+          class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          id="caracteristicas" name="caracteristicas" placeholder="Características"
+        ></textarea>
       </div>
 
-      <div class="mb-4 col-span-2 sm:col-span-1">
-        <label class="block text-gray-300 mb-2" for="estado">Estado</label>
-        <select [(ngModel)]="mascota.estado"
-                class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                id="estado" name="estado">
+      <!-- Estado -->
+      <div class="sm:col-span-2">
+        <label class="block text-gray-300 mb-1" for="estado">Estado</label>
+        <select
+          [(ngModel)]="mascota.estado"
+          class="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          id="estado" name="estado"
+        >
           <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
         </select>
       </div>
 
-      <div class="col-span-2">
-        <button class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded"
-                type="submit">Guardar</button>
+      <!-- Botón guardar -->
+      <div class="sm:col-span-2">
+        <button
+          class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 rounded"
+          type="submit"
+        >
+          Guardar
+        </button>
       </div>
     </form>
   </div>
