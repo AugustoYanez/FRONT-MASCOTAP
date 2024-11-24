@@ -1,0 +1,22 @@
+<div class="max-w-xs bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 cursor-pointer">
+    <img class="w-full h-40 object-cover" [src]="mascota.imagen" alt="Foto de {{ mascota.nombre }}">
+    <div class="p-4">
+      <h2 class="text-xl font-semibold text-gray-900">{{ mascota.nombre }}</h2>
+      <p class="text-gray-600 text-sm"><strong>Apodo:</strong> {{ mascota.apodo }}</p>
+      <p class="text-gray-600 text-sm"><strong>Edad:</strong> {{ mascota.edad }} años</p>
+      <p class="text-gray-600 text-sm"><strong>Estado:</strong> {{ mascota.estado }}</p>
+      <p class="text-gray-600 text-sm"><strong>Descripción:</strong> {{ mascota.descripcion }}</p>
+      <p class="text-gray-600 text-sm"><strong>Características:</strong> {{ mascota.caracteristicas }}</p>
+  
+      <!-- Edición de solicitud -->
+      <div class="mt-4">
+        <label for="solicitud" class="block text-sm font-medium text-gray-700 mb-2">Solicitud</label>
+        <select [(ngModel)]="mascota.solicitud"
+                (change)="actualizarSolicitud(mascota)"
+                class="w-full p-2 bg-gray-100 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option *ngFor="let estado of this.solicitudes" [value]="estado">{{ estado }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  

@@ -1,4 +1,4 @@
-import { Estado } from './enums';
+import { Estado, Solicitud } from './enums';
 
 export interface IMascota {
     _id: string;  // id de mongoDB
@@ -11,4 +11,5 @@ export interface IMascota {
     imagen: string;
     caracteristicas: string;
     ubicacion: string
+    solicitud: Solicitud;
 }
