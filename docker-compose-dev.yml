@@ -30,6 +30,6 @@ services:
       - PORT=3000
       - NODE_ENV=development
       - DATABASE=mongodb://mongodb:27017/mascotaApp
-      - TOKEN_SECRET=secet
+      - TOKEN_SECRET=${TOKEN}
 volumes:
  mongo_data:

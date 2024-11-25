@@ -21,5 +21,5 @@ services:
     environment:
       - PORT=3000
       - NODE_ENV=production
-      - DATABASE=mongodb+srv://mascotapcompany:z0Vv0fnVPJurI8hH@desarrollo.rrp5n.mongodb.net/?retryWrites=true&w=majority&appName=desarrollo 
-      - TOKEN_SECRET=secet
+      - DATABASE=${BASE_DE_DATOS} 
+      - TOKEN_SECRET=${TOKEN}
