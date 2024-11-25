@@ -25,9 +25,11 @@ jobs:
         mkdir -p src/environments
 
         # Crea el archivo environment.ts y escribe las variables de entorno desde GitHub Secrets
+
         echo "export const environment = {" > src/environments/environment.prod.ts
         echo "  production: true," >> src/environments/environment.prod.ts
         echo "  apiUrl: \"${{ secrets.API_URL }}\"" >> src/environments/environment.prod.ts
+
         echo "};" >> src/environments/environment.prod.ts
 
         # Verifica que el archivo se haya creado correctamente
