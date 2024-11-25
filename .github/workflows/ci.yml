@@ -19,6 +19,19 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '20'
+    - name: Create environment.ts file with GitHub Secrets
+      run: |
+        # Crea el directorio src/environments si no existe
+        mkdir -p src/environments
+
+        # Crea el archivo environment.ts y escribe las variables de entorno desde GitHub Secrets
+        echo "export const environment = {" > src/environments/environment.ts
+        echo "  production: true," >> src/environments/environment.ts
+        echo "  apiUrl: \"${{ secrets.API_URL }}\"" >> src/environments/environment.ts
+        echo "};" >> src/environments/environment.prod.ts
+
+        # Verifica que el archivo se haya creado correctamente
+        cat src/environments/environment.prod.ts
 
     - name: Install dependencies
       run: npm install --legacy-peer-deps
