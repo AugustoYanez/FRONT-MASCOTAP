@@ -16,7 +16,7 @@ export class DataSharedService {
     descripcion: '',
     imagen: '',
     caracteristicas: '',
-    estado: Estado.Adoptada,
+    estado: Estado.Encontrada,
     ubicacion: '',
     solicitud: Solicitud.aceptado
   };

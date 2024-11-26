@@ -1,56 +1,63 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { UserService } from '../../services/user.service';
+import { Component, OnInit } from '@angular/core';
 import { IMascota } from '../../interfaces/Mascota';
-import { inject } from '@angular/core';
-import { MascotaMiniComponent } from '../../components/mascota-mini/mascota-mini.component';
-import { DataSharedService } from '../../services/data-shared.service';
-import { RouterModule } from '@angular/router';
 import { MascotaService } from '../../services/mascota.service';
-import { IUsuario } from '../../interfaces/Usuario';
+import { Estado, Solicitud } from '../../interfaces/enums';
+import { MascotaComponent } from '../../components/mascota/mascota.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mascotas',
   standalone: true,
-  imports: [RouterModule, CommonModule, MascotaMiniComponent],
+  imports: [MascotaComponent, CommonModule, FormsModule],
   templateUrl: './mascotas.component.html',
-  styleUrls: ['./mascotas.component.css']
+  styleUrl: './mascotas.component.css'
 })
-export class MascotasComponent {
-  mascota: MascotaService = inject(MascotaService)
-  usuario: IUsuario | null = null;
+export class MascotasComponent implements OnInit {
   mascotas: IMascota[] = [];
-  currentPage: number = 1;
-  itemsPerPage: number = 10;  // Mostramos 10 mascotas por página
+  filteredMascotas: IMascota[] = [];
+  searchTerm: string = '';
+  noResults: boolean = false;
+  filterEstado: Estado | null = null;
+  estado = Estado;
 
-  constructor(private sharedData: DataSharedService) {}
+  constructor(
+    private mascotaService: MascotaService,
+  ) {}
 
   ngOnInit() {
-    this.sharedData.clear();  // Limpia cualquier dato previo
-    this.mascota.traerMascotasUsuario().subscribe(data => {
-      this.mascotas = data || [];
-      this.mascotas.forEach(mascota => {
-        this.sharedData.changeData(mascota._id, mascota);
-      });
+    this.mascotaService.traerMascotas().subscribe(
+      data => {
+        this.mascotas = data.filter(mascota => {
+          return mascota.solicitud === Solicitud.aceptado;
+        }) || [];
+        this.updatePagina();
+      },
+      error => {
+        console.error('Error al obtener mascotas perdidas:', error);
+      }
+    );
+  }
+
+  updatePagina() {
+    this.filteredMascotas = this.mascotas.filter(mascota => {
+      const matchesSearchTerm = this.filterMascotasBySearch(mascota);
+      const matchesFilter = this.filterMascotasByEstado(mascota);
+      return matchesSearchTerm && matchesFilter;
     });
+    this.noResults = this.filteredMascotas.length === 0;
   }
 
-  // Calcula las mascotas que deben mostrarse en la página actual
-  get currentMascotas() {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    return this.mascotas.slice(startIndex, endIndex);
+  setFilterEstado(estado: Estado | null) {
+    this.filterEstado = estado;
+    this.updatePagina();
   }
 
-  // Cargar más mascotas (incrementar página)
-  loadMoreMascotas() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-    }
+  filterMascotasByEstado(mascota: IMascota) {
+    return this.filterEstado === null || mascota.estado === this.filterEstado;
   }
 
-  // Número total de páginas
-  get totalPages() {
-    return Math.ceil(this.mascotas.length / this.itemsPerPage);
+  filterMascotasBySearch(mascota: IMascota) {
+    return  mascota.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
   }
 }

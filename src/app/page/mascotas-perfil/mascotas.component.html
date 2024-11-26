@@ -1,0 +1,22 @@
+<!-- El contenedor principal de la página -->
+<div class="min-h-screen flex items-center justify-center">
+  <!-- Contenedor de las mascotas -->
+  <div class="mascotas-container max-w-6xl mx-auto p-6 bg-gray-800 shadow-lg rounded-lg">
+    <h2 class="text-3xl font-bold text-white mb-6">Mis Mascotas</h2>
+    <a class="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105 mb-6" routerLink="./agg-mascota">
+      Agregar Mascota
+    </a>
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <app-mascota-mini *ngFor="let mascota of currentMascotas" [mascota]="mascota"></app-mascota-mini>
+    </div>
+
+    <!-- Botón de siguiente -->
+    <div *ngIf="mascotas.length > currentPage * itemsPerPage" class="flex justify-center mt-6">
+      <button 
+        class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300"
+        (click)="loadMoreMascotas()">
+        Cargar Más Mascotas
+      </button>
+    </div>
+  </div>
+</div>  

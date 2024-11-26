@@ -109,7 +109,7 @@ export class AgregarMascotaComponent {
       case Estado.EnCasa:
         this.preguntaUbicacion = '¿En donde vive la mascota?';
         break;
-      case Estado.Adoptada:
+      case Estado.Encontrada:
         this.preguntaUbicacion = '¿Dónde encontraste la mascota?';
         break;
       case Estado.Perdida:

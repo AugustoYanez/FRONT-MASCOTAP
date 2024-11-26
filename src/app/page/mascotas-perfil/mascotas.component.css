@@ -1,0 +1,51 @@
+.mascotas-container {  
+    display: flex;  
+    flex-direction: column;  
+    align-items: flex-start;  
+    padding: 2rem;  
+    background-color: #f9f9f9;  
+    border-radius: 8px;  
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  
+}  
+
+h2 {  
+    font-size: 24px;  
+    color: #333;  
+    margin-bottom: 1rem;  
+}  
+
+.add-pet-button {  
+    background-color: #4CAF50;  
+    color: white;  
+    border: none;  
+    padding: 10px 20px;  
+    border-radius: 5px;  
+    cursor: pointer;  
+    margin-bottom: 1rem;  
+}  
+
+.add-pet-button:hover {  
+    background-color: #45a049;  
+}  
+
+.mascota-card {  
+    background-color: white;  
+    border: 1px solid #ddd;  
+    border-radius: 8px;  
+    padding: 1rem;  
+    margin-bottom: 1rem;  
+    width: 100%;  
+    display: flex;  
+    align-items: center;  
+}  
+
+.mascota-card img {  
+    width: 50px;  
+    height: 50px;  
+    border-radius: 50%;  
+    margin-right: 1rem;  
+}  
+
+.mascota-info {  
+    flex-grow: 1;  
+}  
