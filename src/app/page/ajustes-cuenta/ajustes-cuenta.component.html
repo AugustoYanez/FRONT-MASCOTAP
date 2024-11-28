@@ -1,52 +1,101 @@
 <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mt-24">
     <div class="p-6 bg-gray-100">
-        <h2 class="text-2xl font-bold mb-6 text-gray-900">Información Personal</h2>
-
-        <!-- Email Section -->
-        <div class="mb-6">
-            <label class="block text-gray-700 font-semibold">Email</label>
-            <p class="text-gray-600">{{ usuario.email }}</p>
-            <a href="#" class="text-blue-500 hover:underline">Editar</a>
-        </div>
-        <hr class="my-2">
-
-        <!-- Nombre Section -->
-        <div class="mb-6">
-            <label class="block text-gray-700 font-semibold">Nombre</label>
-            <p class="text-gray-600">{{ usuario.nombre }}</p>
-            <a href="#" class="text-blue-500 hover:underline">Editar</a>
-        </div>
-        <hr class="my-2">
-
-        <!-- Teléfono Section -->
-        <div class="mb-6">
-            <label class="block text-gray-700 font-semibold">Teléfono</label>
-            <p class="text-gray-600">{{ usuario.telefono }}</p>
-            <a href="#" class="text-blue-500 hover:underline">Editar</a>
-        </div>
-        <hr class="my-2">
-
-        <!-- Documento Section -->
-        <div class="mb-6">
-            <label class="block text-gray-700 font-semibold">Documento</label>
-            <p class="text-gray-600">{{ usuario.nroDocumento }}</p>
-            <a href="#" class="text-blue-500 hover:underline">Editar</a>
-        </div>
-        <hr class="my-2">
-
-        <!-- Contraseña Section -->
-        <div class="mb-6">
-            <label class="block text-gray-700 font-semibold">Contraseña</label>
-            <p class="text-gray-600">*******</p>
-            <a href="#" class="text-blue-500 hover:underline">Editar</a>
-        </div>
-        <hr class="my-2">
-
-        <!-- Eliminar Cuenta Button -->
-        <div class="mt-6">
-            <button class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition duration-200">
-                Eliminar Cuenta
-            </button>
-        </div>
+      <h2 class="text-2xl font-bold mb-6 text-gray-900">Información Personal</h2>
+  
+     
+      
+  
+      <!-- Nombre Section -->
+      <div class="mb-6">
+        <label class="block text-gray-700 font-semibold">Nombre</label>
+        <p *ngIf="!editando['nombre']" class="text-gray-600">{{ usuario.nombre }}</p>
+        <input
+          *ngIf="editando['nombre']"
+          type="text"
+          [(ngModel)]="usuario.nombre"
+          class="w-full p-2 border rounded"
+        />
+        <a
+          href="#"
+          class="text-blue-500 hover:underline"
+          (click)="toggleEdicion('nombre'); $event.preventDefault()"
+        >
+          {{ editando['nombre'] ? 'Guardar' : 'Editar' }}
+        </a>
+      </div>
+      <hr class="my-2">
+  
+      <!-- Teléfono Section -->
+      <div class="mb-6">
+        <label class="block text-gray-700 font-semibold">Teléfono</label>
+        <p *ngIf="!editando['telefono']" class="text-gray-600">{{ usuario.telefono }}</p>
+        <input
+          *ngIf="editando['telefono']"
+          type="text"
+          [(ngModel)]="usuario.telefono"
+          class="w-full p-2 border rounded"
+        />
+        <a
+          href="#"
+          class="text-blue-500 hover:underline"
+          (click)="toggleEdicion('telefono'); $event.preventDefault()"
+        >
+          {{ editando['telefono'] ? 'Guardar' : 'Editar' }}
+        </a>
+      </div>
+      <hr class="my-2">
+  
+      <!-- Documento Section -->
+      <div class="mb-6">
+        <label class="block text-gray-700 font-semibold">Documento</label>
+        <p *ngIf="!editando['nroDocumento']" class="text-gray-600">
+          {{ usuario.nroDocumento }}
+        </p>
+        <input
+          *ngIf="editando['nroDocumento']"
+          type="text"
+          [(ngModel)]="usuario.nroDocumento"
+          class="w-full p-2 border rounded"
+        />
+        <a
+          href="#"
+          class="text-blue-500 hover:underline"
+          (click)="toggleEdicion('nroDocumento'); $event.preventDefault()"
+        >
+          {{ editando['nroDocumento'] ? 'Guardar' : 'Editar' }}
+        </a>
+      </div>
+      <hr class="my-2">
+  
+      <!-- Contraseña Section -->
+      <div class="mb-6">
+        <label class="block text-gray-700 font-semibold">Contraseña</label>
+        <p *ngIf="!editando['contrasena']" class="text-gray-600">*******</p>
+        <input
+          *ngIf="editando['contrasena']"
+          type="password"
+          [(ngModel)]="usuario.contrasena"
+          class="w-full p-2 border rounded"
+        />
+        <a
+          href="#"
+          class="text-blue-500 hover:underline"
+          (click)="toggleEdicion('contrasena'); $event.preventDefault()"
+        >
+          {{ editando['contrasena'] ? 'Guardar' : 'Editar' }}
+        </a>
+      </div>
+      <hr class="my-2">
+  
+      <!-- Eliminar Cuenta Button -->
+      <div class="mt-6">
+        <button
+          class="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600 transition duration-200"
+          (click)="eliminarCuenta()"
+        >
+          Eliminar Cuenta
+        </button>
+      </div>
     </div>
-</div>
+  </div>
+  
