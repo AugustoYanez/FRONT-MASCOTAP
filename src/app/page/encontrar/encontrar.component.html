@@ -1,18 +1,16 @@
-<div class="container mx-auto">
-  <h1 class="text-4xl font-bold text-center mb-8">Encontrar Component</h1>
+<div class="mt-10 container mx-auto">
+  <h1 class=" text-4xl font-bold text-white  text-center mb-8">Encontrar Component</h1>
   
   <div class="flex justify-center">
-    <form class="w-full max-w-lg">
       <div class="flex items-center border-b border-b-2 border-teal-500 py-2">
-        <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Search">
-        <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+        <input class="appearance-none bg-transparent border-none w-75 text-gray-700 mr-3 py-1 px-2 focus:outline-none" type="text" placeholder="id del usuario" [(ngModel)]="id">
+        <button class="bg-white text-gray-900 font-bold py-3 px-6 rounded-full hover:bg-gray-300 transition duration-300" (click)="encontrarPorPlaca()">
           Search
         </button>
       </div>
-    </form>
   </div>
   
-  <div class="mt-8">
-    <!-- Add your content here -->
+  <div class="mt-8 flex justify-center">
+    <button class="bg-white relative top-20 text-gray-900 font-bold py-3 px-6 rounded-full hover:bg-gray-300 transition duration-300" (click)="registrarMascota()"> registrar sin qr</button>
   </div>
 </div>

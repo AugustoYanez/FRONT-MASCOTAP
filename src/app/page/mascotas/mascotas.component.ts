@@ -5,6 +5,7 @@ import { Estado, Solicitud } from '../../interfaces/enums';
 import { MascotaComponent } from '../../components/mascota/mascota.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-mascotas',
@@ -23,7 +24,8 @@ export class MascotasComponent implements OnInit {
 
   constructor(
     private mascotaService: MascotaService,
-  ) {}
+    private userService: UserService,
+    ) {}
 
   ngOnInit() {
     this.mascotaService.traerMascotas().subscribe(

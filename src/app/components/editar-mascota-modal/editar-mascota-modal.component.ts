@@ -4,7 +4,7 @@ import { IMascota } from '../../interfaces/Mascota';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { tipoDato } from '../../interfaces/enums';
+import { Solicitud, tipoDato } from '../../interfaces/enums';
 import { ICaracteristicas } from '../../interfaces/Caracteristica';
 import { MascotaService } from '../../services/mascota.service';
 import { CaracteristicasService } from '../../services/caracteristicas.service';
@@ -44,7 +44,7 @@ export class EditarMascotaModalComponent {
       caracteristicas: data.caracteristicas,
       estado: data.estado,
       ubicacion: data.ubicacion,
-      solicitud: data.solicitud
+      solicitud: Solicitud.aceptado,
     };
   }
 

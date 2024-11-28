@@ -1,6 +1,7 @@
 import { Component, Input, input } from '@angular/core';
 import { IMascota } from '../../interfaces/Mascota';
 import { Estado } from '../../interfaces/enums';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-mascota',
@@ -13,10 +14,10 @@ export class MascotaComponent {
  @Input() mascota!: IMascota;
  estado = Estado;
 
- constructor(){}
+ constructor(private userService: UserService){}
 
  contactar(){
-  this.mascota.estado === Estado.Encontrada ? console.log('Contactar al rescatista') : console.log('Contactar al dueño de la mascota');
+  this.mascota.estado === Estado.Encontrada ? this.userService.contactarUsuario("543f") : this.userService.contactarUsuario("543f");
  }
 
 }
