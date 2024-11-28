@@ -1,42 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IMascota } from '../../interfaces/Mascota';
 import { MascotaService } from '../../services/mascota.service';
 import { Estado, Solicitud } from '../../interfaces/enums';
 import { MascotaComponent } from '../../components/mascota/mascota.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../../services/user.service';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { IMascotaPaginada } from '../../interfaces/Paginacion';
 
 @Component({
   selector: 'app-mascotas',
   standalone: true,
-  imports: [MascotaComponent, CommonModule, FormsModule],
+  imports: [MascotaComponent, CommonModule, FormsModule, MatPaginatorModule],
   templateUrl: './mascotas.component.html',
-  styleUrl: './mascotas.component.css'
+  styleUrls: ['./mascotas.component.css']
 })
 export class MascotasComponent implements OnInit {
   mascotas: IMascota[] = [];
   filteredMascotas: IMascota[] = [];
+  paginatedMascotas: IMascota[] = [];
   searchTerm: string = '';
   noResults: boolean = false;
   filterEstado: Estado | null = null;
   estado = Estado;
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  pageSize = 3; 
+  pageIndex = 0; 
+  totalMascotas = 0;
+
   constructor(
-    private mascotaService: MascotaService,
-    private userService: UserService,
-    ) {}
+    private mascotaService: MascotaService
+  ) {}
 
   ngOnInit() {
-    this.mascotaService.traerMascotas().subscribe(
-      data => {
-        this.mascotas = data.filter(mascota => {
-          return mascota.solicitud === Solicitud.aceptado;
-        }) || [];
-        this.updatePagina();
+    this.fetchMascotas()
+  }
+
+  fetchMascotas(){
+    const page = this.pageIndex + 1; 
+    const limit = this.pageSize;
+    this.mascotaService.traerMascotaPagina(page, limit).subscribe(
+      (data: IMascotaPaginada) => {
+        this.mascotas = data.mascotas.filter(mascota => mascota.solicitud === Solicitud.aceptado) || [];
+        this.totalMascotas = data.total
+        console.log(data);
+        
+        this.updatePaginatedMascotas(this.mascotas);
       },
       error => {
-        console.error('Error al obtener mascotas perdidas:', error);
+        console.error('Error al obtener mascotas:', error);
       }
     );
   }
@@ -47,7 +60,19 @@ export class MascotasComponent implements OnInit {
       const matchesFilter = this.filterMascotasByEstado(mascota);
       return matchesSearchTerm && matchesFilter;
     });
+
     this.noResults = this.filteredMascotas.length === 0;
+    this.updatePaginatedMascotas(this.filteredMascotas);
+  }
+
+  updatePaginatedMascotas(mascotas: IMascota[]) {
+    this.paginatedMascotas = mascotas;
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize; 
+    this.fetchMascotas();
   }
 
   setFilterEstado(estado: Estado | null) {
@@ -60,6 +85,6 @@ export class MascotasComponent implements OnInit {
   }
 
   filterMascotasBySearch(mascota: IMascota) {
-    return  mascota.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+    return mascota.nombre.toLowerCase().includes(this.searchTerm.toLowerCase());
   }
 }

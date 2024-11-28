@@ -4,16 +4,11 @@ import { IMascota } from '../../interfaces/Mascota';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Solicitud, tipoDato } from '../../interfaces/enums';
+import { Estado, Solicitud, tipoDato } from '../../interfaces/enums';
 import { ICaracteristicas } from '../../interfaces/Caracteristica';
 import { MascotaService } from '../../services/mascota.service';
 import { CaracteristicasService } from '../../services/caracteristicas.service';
 
-export enum Estado {
-  EnCasa = "EN MI HOGAR",
-  Adoptada = "LO ENCONTRE",
-  Perdida = "LO PERDI",
-}
 
 @Component({
   selector: 'app-editar-mascota-modal',
@@ -44,7 +39,7 @@ export class EditarMascotaModalComponent {
       caracteristicas: data.caracteristicas,
       estado: data.estado,
       ubicacion: data.ubicacion,
-      solicitud: Solicitud.aceptado,
+      solicitud: data.solicitud,
     };
   }
 

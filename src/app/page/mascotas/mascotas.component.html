@@ -1,34 +1,41 @@
 <div class="mascotas-perdidas p-4">
-    <h2 class="text-2xl font-bold mb-4 text-white">Mascotas</h2>
-  
-    <!-- Contenedor para la búsqueda y el botón -->
-    <div class="search-container flex items-center mb-4">
-      <input
-        type="text"
-        [(ngModel)]="searchTerm"
-        (input)="updatePagina()"
-        placeholder="Buscar por nombre..."
-        class="search-input p-2 border rounded-md flex-1"
-      />
-      <button (click)="updatePagina()" class="ml-2 p-2 bg-blue-500 text-white rounded-md">🔍</button>
-    </div>
+  <h2 class="text-2xl font-bold mb-4 text-white">Mascotas</h2>
 
-    <!-- Controles de filtrado -->
-    <div class="filter-container flex items-center mb-4">
-      <button (click)="setFilterEstado(null)" class="mr-2 p-2 bg-gray-500 text-white rounded-md">Todas</button>
-      <button (click)="setFilterEstado(estado.Perdida)" class="mr-2 p-2 bg-red-500 text-white rounded-md">Perdidas</button>
-      <button (click)="setFilterEstado(estado.Encontrada)" class="p-2 bg-green-500 text-white rounded-md">Encontradas</button>
-    </div>
-  
-    <!-- Mensaje de no resultados -->
-    <div *ngIf="noResults" class="text-red-500 mb-4">
-      No se encontró la mascota con nombre "{{ searchTerm }}"
-    </div>
-  
-    <!-- Lista de Mascotas -->
-    <ul class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-      <li *ngFor="let mascota of filteredMascotas" class="flex justify-center text-white rounded-lg p-2">
-        <app-mascota [mascota]="mascota"></app-mascota>
-      </li>
-    </ul>
+  <!-- Contenedor para la búsqueda y el botón -->
+  <div class="search-container flex items-center mb-4">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="updatePagina()"
+      placeholder="Buscar por nombre..."
+      class="search-input p-2 border rounded-md flex-1"
+    />
+    <button (click)="updatePagina()" class="ml-2 p-2 bg-blue-500 text-white rounded-md">🔍</button>
+  </div>
+
+  <!-- Controles de filtrado -->
+  <div class="filter-container flex items-center mb-4">
+    <button (click)="setFilterEstado(null)" class="mr-2 p-2 bg-gray-500 text-white rounded-md">Todas</button>
+    <button (click)="setFilterEstado(estado.Perdida)" class="mr-2 p-2 bg-red-500 text-white rounded-md">Perdidas</button>
+    <button (click)="setFilterEstado(estado.Encontrada)" class="p-2 bg-green-500 text-white rounded-md">Encontradas</button>
+  </div>
+
+  <!-- Mensaje de no resultados -->
+  <div *ngIf="noResults" class="text-red-500 mb-4">
+    No se encontró la mascota con nombre "{{ searchTerm }}"
+  </div>
+
+  <!-- Lista de Mascotas con Paginación -->
+  <ul class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+    <li *ngFor="let mascota of paginatedMascotas" class="flex justify-center text-white rounded-lg p-2">
+      <app-mascota [mascota]="mascota"></app-mascota>
+    </li>
+  </ul>
+
+  <!-- Paginador -->
+  <mat-paginator
+    [length]="totalMascotas "
+    [pageSize]="pageSize"
+    (page)="onPageChange($event)">
+  </mat-paginator>
 </div>

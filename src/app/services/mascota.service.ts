@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { IMascota } from '../interfaces/Mascota';
+import { IMascotaPaginada } from '../interfaces/Paginacion';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,9 @@ export class MascotaService {
 
   constructor(private http: HttpClient) { }
 
+  traerMascotaPagina(pagina:number, limite:number): Observable<IMascotaPaginada> {
+    return this.http.get<IMascotaPaginada>(`${this.THISURL}/mascotas/pag/?page=${pagina}&limit=${limite}`);
+  }
   eliminarMascota(id: string): Observable<IMascota> {
     return this.http.delete<IMascota>(`${this.THISURL}/mascotas/${id}`);
   }
