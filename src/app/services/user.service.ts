@@ -19,5 +19,15 @@ export class UserService {
   perfil(): Observable<IUsuario> {
     return this.http.get<IUsuario>(`${this.THISURL}`+ '/perfil');
   }
+
+   // Editar usuario
+   editarUsuario(updates: Partial<IUsuario>): Observable<IUsuario> {
+    return this.http.put<IUsuario>(`${this.THISURL}/editar`, updates);
+  }
+
+  // Eliminar usuario
+  eliminarUsuario(): Observable<void> {
+    return this.http.delete<void>(`${this.THISURL}/eliminar`);
+  }
   
 }
