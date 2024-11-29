@@ -17,6 +17,7 @@ import { FormCaracteristicasComponent } from './page/form-caracteristicas/form-c
 import { SolicitudesComponent } from './page/solicitudes/solicitudes.component';
 import { MascotasComponent } from './page/mascotas/mascotas.component';
 import { EncontrarComponent } from './page/encontrar/encontrar.component';
+import { PerfilV2Component } from './page/perfil-v2/perfil-v2.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -32,7 +33,8 @@ export const routes: Routes = [
       { path: 'mascotas/agg-mascota', component: AgregarMascotaComponent },
       { path: 'encontrar', component: MascotasComponent }, // Lista de mascotas perdidas
       { path: 'buscar-hogar', component: BuscarHogarComponent }, // Buscar hogares de tránsito
-      { path: 'encontrar-mascota', component: EncontrarComponent }
+      { path: 'encontrar-mascota', component: EncontrarComponent },
+      { path: 'perfil-v2/:id', component: PerfilV2Component }
     ],
   },
   {
