@@ -14,3 +14,4 @@ export interface IUsuario {
     rol: Rol; 
     mascotas: IMascota[];
 }
+

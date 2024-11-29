@@ -5,20 +5,7 @@
     <a class="text-white text-xl font-extrabold" routerLink="/">MASCOTAP</a>
     <ng-container *ngIf="admin; else notAdmin">
       <div class="hidden md:flex space-x-6">
-        <a
-          href="/"
-          class="nav-link text-white hover:underline"
-          routerLink="/adopcion"
-          >Dar en adopción</a
-        >
-        <a class="nav-link text-white hover:underline">Quiero Adoptar</a>
-        <a
-          class="nav-link text-white hover:underline"
-          routerLink="./agg-mascota"
-          >Registrar Mascota</a
-        >
-        <a class="nav-link text-white hover:underline">Hogares de Tránsito</a>
-        <a class="nav-link text-white hover:underline">Sobre Nosotros</a>
+        <a class="nav-link text-white hover:underline" routerLink="/encontrar">Encontrar</a>
         <a class="nav-link text-white hover:underline" routerLink="/perfil"
           >Perfil</a
         >
@@ -31,23 +18,10 @@
     </ng-container>
     <ng-template #notAdmin>
         <div class="hidden md:flex space-x-6">
-            <a
-              href="/"
-              class="nav-link text-white hover:underline"
-              routerLink="/adopcion"
-              >Dar en adopción</a
-            >
-            <a class="nav-link text-white hover:underline">Quiero Adoptar</a>
-            <a
-              class="nav-link text-white hover:underline"
-              routerLink="./agg-mascota"
-              >Registrar Mascota</a
-            >
-            <a class="nav-link text-white hover:underline">Hogares de Tránsito</a>
-            <a class="nav-link text-white hover:underline">Sobre Nosotros</a>
-            <a class="nav-link text-white hover:underline" routerLink="/perfil"
-              >Perfil</a
-            >
+          <a class="nav-link text-white hover:underline" routerLink="/encontrar">Encontrar</a>
+          <a class="nav-link text-white hover:underline" routerLink="/perfil"
+            >Perfil</a
+          >
           </div>
       </ng-template>
     <ng-container *ngIf="!auth.loggedIn('token'); else loggedIn">

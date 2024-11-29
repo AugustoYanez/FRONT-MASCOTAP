@@ -17,7 +17,7 @@ export enum Rol {
 
 export enum Estado{ // para las mascotas
     EnCasa = "EN MI HOGAR",
-    Adoptada = "LO ENCONTRE",
+    Encontrada = "LO ENCONTRE",
     Perdida = "LO PERDI",
 }
 

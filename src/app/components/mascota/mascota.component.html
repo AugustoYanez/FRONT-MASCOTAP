@@ -1,0 +1,26 @@
+<div class="max-w-sm rounded overflow-hidden shadow-lg bg-white p-4">
+  <img
+    class="w-full h-40 object-cover"
+    [src]="mascota.imagen"
+    alt="Imagen de la mascota"
+  />
+  <div class="px-4 py-2">
+    <p class="text-gray-700 text-sm">
+        <strong>Nombre: </strong>{{ mascota.nombre }} <br />
+        <strong>Descripción: </strong>{{ mascota.descripcion }} <br />
+        <strong>Características: </strong>{{ mascota.caracteristicas }}
+    </p>
+  </div>
+  <div class="px-4 py-2">
+    <button
+      class="bg-blue-500 text-white font-bold py-1 px-2 rounded"
+      (click)="contactar()"
+    >
+      {{
+        mascota.estado === estado.Encontrada
+          ? "Contactar al rescatista"
+          : "Contactar al dueño"
+      }}
+    </button>
+  </div>
+</div>

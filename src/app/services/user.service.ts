@@ -14,18 +14,23 @@ export class UserService {
   private BASEURL = environment.apiUrl;
   private THISURL = `${this.BASEURL}/user`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   perfil(): Observable<IUsuario> {
     return this.http.get<IUsuario>(`${this.THISURL}`+ '/perfil');
   }
+  
+  contactarUsuario(id:string){
+    this.router.navigate(['/perfil-v2', id]);
+  } 
 
-   // Editar usuario
+  getPerfil(id:string): Observable<IUsuario> {
+    return this.http.get<IUsuario>(`${this.THISURL}`+ '/perfil'+ `/${id}`);
+  }
    editarUsuario(updates: Partial<IUsuario>): Observable<IUsuario> {
     return this.http.put<IUsuario>(`${this.THISURL}/editar`, updates);
   }
 
-  // Eliminar usuario
   eliminarUsuario(): Observable<void> {
     return this.http.delete<void>(`${this.THISURL}/eliminar`);
   }
