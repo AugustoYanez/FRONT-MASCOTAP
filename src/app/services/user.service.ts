@@ -19,12 +19,20 @@ export class UserService {
   perfil(): Observable<IUsuario> {
     return this.http.get<IUsuario>(`${this.THISURL}`+ '/perfil');
   }
+  
   contactarUsuario(id:string){
     this.router.navigate(['/perfil-v2', id]);
   } 
 
   getPerfil(id:string): Observable<IUsuario> {
     return this.http.get<IUsuario>(`${this.THISURL}`+ '/perfil'+ `/${id}`);
+  }
+   editarUsuario(updates: Partial<IUsuario>): Observable<IUsuario> {
+    return this.http.put<IUsuario>(`${this.THISURL}/editar`, updates);
+  }
+
+  eliminarUsuario(): Observable<void> {
+    return this.http.delete<void>(`${this.THISURL}/eliminar`);
   }
   
 }
