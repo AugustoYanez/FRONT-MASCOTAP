@@ -1,0 +1,25 @@
+<div class="flex items-center justify-center min-h-screen">
+    <div class="max-w-md w-full bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Información de Contacto</h2>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Nombre:</label>
+            <p class="text-gray-900">{{ usuario.nombre }} {{ usuario.apellido }}</p>
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Correo Electrónico:</label>
+            <p class="text-gray-900">{{ usuario.email }}</p>
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Teléfono:</label>
+            <p class="text-gray-900">{{ usuario.telefono }}</p>
+        </div>
+        
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700">Número de Documento:</label>
+            <p class="text-gray-900">{{ usuario.nroDocumento }}</p>
+        </div>
+    </div>
+</div>

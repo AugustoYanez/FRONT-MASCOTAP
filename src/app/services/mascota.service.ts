@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { IMascota } from '../interfaces/Mascota';
 import { IMascotaPaginada } from '../interfaces/Paginacion';
+import { IUsuario } from '../interfaces/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,8 @@ export class MascotaService {
   }
   traerMascotasPerdidas(): Observable<IMascota[]> {
     return this.http.get<IMascota[]>(`${this.THISURL}/mascotas-perdidas`);
+  }
+  encontrarDueño(id: string): Observable<string> {
+    return this.http.get<string>(`${this.THISURL}/encontrar-dueno/${id}`);
   }
 }

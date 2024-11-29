@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { IUsuario } from '../../interfaces/Usuario';
 import { ActivatedRoute } from '@angular/router';
+import { Contacto, Documento, Rol } from '../../interfaces/enums';
 
 @Component({
   selector: 'app-perfil-v2',
@@ -11,7 +12,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './perfil-v2.component.css'
 })
 export class PerfilV2Component {
-  usuario ?: IUsuario;
+  usuario : IUsuario = {
+    apellido: '',
+    nombre: "",
+    email: "",
+    contacto: Contacto.Sms,
+    telefono: "",
+    contrasena: "",
+    documento: Documento.Cuil,
+    mascotas: [],
+    nroDocumento: "",
+    rol: Rol.Usuario,
+  };
   constructor(private userService : UserService, private route: ActivatedRoute){
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
