@@ -11,7 +11,7 @@ export interface IUsuario {
     telefono: string;
     documento: Documento;
     contacto: Contacto;
-    rol: Rol; 
+    rol: Rol;   
     mascotas: IMascota[];
 }
 
